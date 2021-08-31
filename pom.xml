@@ -2,6 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.5.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <groupId>com.lll</groupId>
     <artifactId>personnel</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,8 +26,101 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <!-- spring-boot-starter其中包含了 spring-boot-starter-logging
+           而spring-boot-starter-web 包含了spring-boot-starter,所以我们只需要引入web组件即可不需要额外添加logback的依赖-->
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--配置注解执行器 start-->
+        <dependency>
+            <groupId> org.springframework.boot </groupId>
+            <artifactId> spring-boot-configuration-processor </artifactId>
+            <optional> true </optional>
+        </dependency>
+        <!--配置注解执行器 end-->
+
+        <!--访问页面 start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!--访问页面 end -->
+
+        <!--模板引擎处理/视图技术/动态页面 start-->
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
+        </dependency>
+        <!--模板引擎处理/视图技术/动态页面 end-->
+
+        <!-- 谷歌出的JSON转换工具 start  -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <!-- 谷歌出的JSON转换工具 end  -->
+
+        <!-- LoggerTest测试所需要的依赖 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- LoggerTest测试所需要的依赖 end-->
+
+        <!-- hibernate validation start  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <!-- hibernate validation  end  -->
+
+
+        <!-- 热部署 start -->
+        <dependency>
+            <!-- Spring Boot自动热部署官网提供的工具 -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- 热部署 end -->
+
+        <!-- Spring AOP start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId><!---->
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- Spring AOP end -->
+
+        <!-- DAO层开发需要的依赖  start -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+
+        </dependency>
+        <!-- DAO层开发需要的依赖  end -->
+<!--
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -32,8 +133,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-    </dependencies>
+-->
 
+
+    </dependencies>
+<!--
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -45,26 +149,25 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+-->
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.3.7.RELEASE</version>
+
                 <configuration>
-                    <mainClass>com.lll.personnel.PersonnelApplication</mainClass>
+                    <!-- 增加fork(交叉)  只有增加fork的值为true 才允许热部署 -->
+                    <!--
+                        devtools中提供了2个类加载器：
+                       一个是默认原有的类加载器,另外一个类加载器会去监视我们的系统中资源的变化,
+                       主要是.class文件发生变化, 一旦发生了变化就会把修改的内容动态的reloading到服务器中去
+                    -->
+                    <fork>true</fork>
                 </configuration>
+
                 <executions>
                     <execution>
                         <id>repackage</id>
