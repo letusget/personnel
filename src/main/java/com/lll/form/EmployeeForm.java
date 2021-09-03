@@ -1,10 +1,7 @@
 package com.lll.form;
 
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
-
-
-import java.util.Date;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * 封装员工信息修改 新增 传递的数据
@@ -15,6 +12,7 @@ public class EmployeeForm
     /**
      * 员工id号
      */
+    //@NotEmpty(message = "id 必填")
     private String empId;
 
     /**
@@ -25,6 +23,7 @@ public class EmployeeForm
     /**
      * 员工姓名
      */
+    //@NotEmpty(message = "姓名 必填")
     private String empName;
 
     /**
@@ -58,11 +57,6 @@ public class EmployeeForm
      */
     private String empIdCard;
 
-    /**
-     * 员工入职时间
-     */
-    @DateTimeFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
-    private Date empEntry;
 
     /**
      *员工婚姻状况

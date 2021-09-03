@@ -43,9 +43,11 @@
                             <div class="form-group">
                                 <label>员工身份证号码</label><input type="text" class="form-control" id="productName" name="productName" value="${(employee.empIdCard)!''}"/>
                             </div>
+                            <#--
                             <div class="form-group">
                                 <label>员工入职时间</label><input type="text" class="form-control" id="productName" name="productName" value="${(employee.empEntry)!''}"/>
                             </div>
+                            -->
                             <div class="form-group">
                                 <label>员工婚姻状态</label><input type="text" class="form-control" id="productName" name="productName" value="${(employee.empMarital)!''}"/>
                             </div>
@@ -54,6 +56,7 @@
                             </div>
 
                             <div class="form-group">
+
                                 <label>部门规划</label>
                                 <select name="categoryType" id="categoryType" class="form-control">
                                     <#--部门信息-->

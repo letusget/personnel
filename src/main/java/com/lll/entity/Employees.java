@@ -1,12 +1,13 @@
 package com.lll.entity;
 
+import com.lll.enums.EmpMaritalEnum;
+import com.lll.enums.EmpSexEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -25,6 +26,10 @@ public class Employees implements Serializable
      * 员工id号
      */
     @Id
+    //用自定义主键策略 生成自定义主键ID
+    //参考：https://www.cnblogs.com/DevMuYuer/p/10088425.html
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "emp-id")
+    @GenericGenerator(name = "emp-id", strategy = "com.lll.utils.EmpIDGenerator")
     private String empId;
 
     /**
@@ -41,7 +46,8 @@ public class Employees implements Serializable
      * 员工性别
      * 1为男生，0为女生
      */
-    private Integer empSex;
+    //private Integer empSex;
+    private Integer empSex= EmpSexEnum.MAN.getCode();   //默认为男生
 
     /**
      * 员工邮箱
@@ -79,7 +85,8 @@ public class Employees implements Serializable
      * 1 为已婚
      * 0 为未婚
      */
-    private Integer empMarital;
+    //private Integer empMarital;
+    private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode(); //默认未婚
 
     /**
      * 备注

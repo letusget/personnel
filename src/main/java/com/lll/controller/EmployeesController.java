@@ -102,7 +102,7 @@ public class EmployeesController
         if (bindingResult.hasErrors())
         {
             session.setAttribute("msg",bindingResult.getFieldError().getDefaultMessage());
-            session.setAttribute("url",request.getContextPath()+"employees/index");
+            session.setAttribute("url",request.getContextPath()+"/employees/index");
             return new ModelAndView("common/error");
         }
         Employees employees=new Employees();
@@ -124,10 +124,10 @@ public class EmployeesController
         }catch (PersonnelExcetption e)
         {
             session.setAttribute("msg",e.getMessage());
-            session.setAttribute("url",request.getContextPath()+"employees/index");
+            session.setAttribute("url",request.getContextPath()+"/employees/index");
             return new ModelAndView("common/error");
         }
-        session.setAttribute("url",request.getContextPath()+"employees/list");
+        session.setAttribute("url",request.getContextPath()+"/employees/list");
         return new ModelAndView("common/success");
 
     }
