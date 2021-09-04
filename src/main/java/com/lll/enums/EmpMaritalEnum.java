@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public enum EmpMaritalEnum
+public enum EmpMaritalEnum implements CodeEnum<Integer>
 {
     UNMARRIED(0,"未婚"),
     MARRIED(1,"已婚");

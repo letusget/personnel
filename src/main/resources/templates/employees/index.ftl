@@ -26,7 +26,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label>员工姓名</label><input type="text" class="form-control" id="productPrice" name="productPrice" value="${(employee.empName)!''}"/>
+                                <label>员工姓名</label>
+                                <input type="text" class="form-control" id="productPrice" name="productPrice" value="${(employee.empName)!''}"/>
                             </div>
                             <div class="form-group">
                                 <label>员工性别</label><input type="number" class="form-control" id="productStock" name="productStock" value="${(employee.empSex)!''}"/>

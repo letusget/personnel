@@ -66,7 +66,8 @@ public class EmployeesController
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value="empId",required = false)String empId,Map map)
     {
-        if (StringUtils.hasText(empId))
+        if(empId != null)
+        //if (StringUtils.hasText(empId))
         {
             //根据员工id 查询员工信息
             Employees employees=employeesService.findByEmpId(empId);
@@ -83,10 +84,8 @@ public class EmployeesController
         return new ModelAndView("product/index",map);
          */
 
-        //TODO 将代码转换为显示的信息
+        //TODO 新增的空字段问题
         //TODO 新增的入职时间 由系统确定
-        //TODO 照片 和 身份证号码 显示有问题
-
 
         return new ModelAndView("employees/index",map);
 
@@ -95,7 +94,7 @@ public class EmployeesController
     /**
      * 新增员工
      */
-    @PostMapping("/save")
+    /*@PostMapping("/save")
     public ModelAndView save(@Valid EmployeeForm form, BindingResult bindingResult, HttpServletRequest request)
     {
         HttpSession session=request.getSession();
@@ -130,8 +129,36 @@ public class EmployeesController
         session.setAttribute("url",request.getContextPath()+"/employees/list");
         return new ModelAndView("common/success");
 
-    }
+    }*/
 
+    @PostMapping("/save")
+    public ModelAndView save(@Valid EmployeeForm form, BindingResult bindingResult, Map<String,Object> map)
+    {
+        if (bindingResult.hasErrors())
+        {
+            map.put("msg",bindingResult.getFieldError().getDefaultMessage());
+            map.put("url","/personnel/employees/index");
+            return new ModelAndView("common/error",map);
+        }
+
+        Employees employees=new Employees();
+        try{
+            if (form.getEmpId()!=null)
+            {
+                employees=employeesService.findByEmpId(form.getEmpId());
+            }
+            BeanUtils.copyProperties(form,employees);
+            employeesService.save(employees);
+        }catch (PersonnelExcetption e)
+        {
+            map.put("msg",e.getMessage());
+            map.put("url","/personnel/employees/index");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("url","/personnel/employees/list");
+        return new ModelAndView("common/success",map);
+
+    }
 
 
 }

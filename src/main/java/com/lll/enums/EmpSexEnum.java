@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public enum EmpSexEnum
+public enum EmpSexEnum implements CodeEnum<Integer>
 {
     WOMAN(0,"女"),
     MAN(1,"男");

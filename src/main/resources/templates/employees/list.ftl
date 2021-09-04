@@ -43,21 +43,21 @@
                                 <tr>
                                     <td>${employees_index + 1}</td>
                                     <td>${employees.empId}</td>
-                                    <td>${employees.empId}</td>
-                                    <#--<td><img height="100" width="100" src="${employees.empPhoto}" alt="该图片不存在!"></td>-->
+                                    <#--<td>${employees.empId}</td>-->
+                                    <td><img height="100" width="100" src="${employees.empPhoto}" alt="该图片不存在!"></td>
 
                                     <td>${employees.empName}</td>
-                                    <td>${employees.empSex}</td>
+                                    <td>${employees.getEmpSexEnum().message}</td>
                                     <td>${employees.empEmail}</td>
                                     <td>${employees.empPhone}</td>
                                     <#--<td>${employees.depId}</td>-->
                                     <td>${employees.depName}</td>
 
-                                    <td>${employees.depName}</td>
-                                   <#-- <td>${employees.empIdCard}</td>-->
+                                    <#--<td>${employees.depName}</td>-->
+                                    <td>${employees.empIdCard}</td>
 
                                     <td>${employees.empEntry}</td>
-                                    <td>${employees.empMarital}</td>
+                                    <td>${employees.getEmpMaritalEnum().message}</td>
                                     <td>${employees.empRemarks}</td>
 
                                     <td><a href="/personnel/employees/index?empId=${employees.empId}">修改</a></td>

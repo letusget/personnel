@@ -1,45 +1,39 @@
-package com.lll.entity;
+package com.lll.DTO;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lll.entity.Employees;
 import com.lll.enums.EmpMaritalEnum;
 import com.lll.enums.EmpSexEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Transient;
 
 /**
- * 员工表对应的 JavaBean
+ * 员工DTO 用来传输数据
  */
-@Entity
 @Data
 @DynamicInsert
-@Table(name="employees")
-public class Employees implements Serializable
-{
-    private static final long serialVersionUID=1L;
-
+@DynamicUpdate
+public class EmployeesDTO {
     /**
      * 员工id号
      */
-    @Id
-    //用自定义主键策略 生成自定义主键ID
-    //参考：https://www.cnblogs.com/DevMuYuer/p/10088425.html
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "emp-id")
-    @GenericGenerator(name = "emp-id", strategy = "com.lll.utils.EmpIDGenerator")
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "emp-id")
+    //@GenericGenerator(name = "emp-id", strategy = "com.lll.utils.EmpIDGenerator")
     private String empId;
 
     /**
      * 员工照片
      */
-    //这里需要标明这个地段，否则JPA 会自动添加数据库字段，出现问题
-    @Column(name="emp_id_photo")
     private String empPhoto;
 
     /**
@@ -77,14 +71,11 @@ public class Employees implements Serializable
     /**
      * 员工身份证号码
      */
-    //这里需要标明这个地段，否则JPA 会自动添加数据库字段，出现问题
-    @Column(name = "emp_id_card")
     private String empIdCard;
 
     /**
      * 员工入职时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
     private Date empEntry;
 
@@ -100,6 +91,9 @@ public class Employees implements Serializable
      * 备注
      */
     private String empRemarks;
+
+    @Transient
+    List<Employees> employees;
 
     /**
      * 获取性别  枚举常量类
