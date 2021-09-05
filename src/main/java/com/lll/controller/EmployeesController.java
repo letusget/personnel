@@ -85,9 +85,6 @@ public class EmployeesController
         return new ModelAndView("product/index",map);
          */
 
-        //TODO 新增的空字段问题
-        //TODO 新增的入职时间 由系统确定
-
         return new ModelAndView("employees/index",map);
 
     }
@@ -147,11 +144,15 @@ public class EmployeesController
         {
             if (form.getEmpId()!=null)
             {
+                System.out.println("1  "+form.getEmpId());
                 employees=employeesService.findByEmpId(form.getEmpId());
+                System.out.println("2  "+form.getEmpId());
             }
             else
             {
+                System.out.println("3  "+form.getEmpId());
                 form.setEmpId(KeyUtil.genUniqueKey());
+                System.out.println("4  "+form.getEmpId());
             }
             BeanUtils.copyProperties(form,employees);
             employeesService.save(employees);
@@ -162,6 +163,7 @@ public class EmployeesController
             map.put("url","/personnel/employees/index");
             return new ModelAndView("common/error",map);
         }
+
         map.put("url","/personnel/employees/list");
         return new ModelAndView("common/success",map);
 

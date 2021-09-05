@@ -83,7 +83,7 @@
                                 </select>
                             </div>
                             <button type="submit" class="btn btn-default">提交结果</button>
-                            <input  type="hidden" name="productId" value="${(employees.empId)!''}">
+                            <input  type="hidden" name="empId" value="${(employees.empId)!''}">
                         </form>
                     </div>
                     <!--  复制 从 http://www.ibootstrap.cn 里面下载的内容 end -->
