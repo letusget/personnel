@@ -6,12 +6,15 @@ import com.lll.enums.EmpMaritalEnum;
 import com.lll.enums.EmpSexEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -20,6 +23,7 @@ import java.util.Date;
 @Entity
 @Data
 @DynamicInsert
+@DynamicUpdate
 @Table(name="employees")
 public class Employees implements Serializable
 {
@@ -84,8 +88,9 @@ public class Employees implements Serializable
     /**
      * 员工入职时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @CreationTimestamp  //这样入职时间就不会为空了
     private Date empEntry;
 
     /**

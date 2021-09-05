@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.criteria.From;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -64,7 +65,7 @@ public class EmployeesController
      * 区别是在修改时是有 员工ID的
      */
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value="empId",required = false)String empId,Map map)
+    public ModelAndView index(@RequestParam(value="empId",required = false)String empId,Map<String,Object> map)
     {
         if(empId != null)
         //if (StringUtils.hasText(empId))
@@ -72,7 +73,7 @@ public class EmployeesController
             //根据员工id 查询员工信息
             Employees employees=employeesService.findByEmpId(empId);
             //设置员工信息
-            map.put("employee",employees);
+            map.put("employees",employees);
         }
         //查询部门信息
         //TODO 部门信息
@@ -142,13 +143,19 @@ public class EmployeesController
         }
 
         Employees employees=new Employees();
-        try{
+        try
+        {
             if (form.getEmpId()!=null)
             {
                 employees=employeesService.findByEmpId(form.getEmpId());
             }
+            else
+            {
+                form.setEmpId(KeyUtil.genUniqueKey());
+            }
             BeanUtils.copyProperties(form,employees);
             employeesService.save(employees);
+
         }catch (PersonnelExcetption e)
         {
             map.put("msg",e.getMessage());

@@ -1,5 +1,9 @@
 package com.lll.form;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lll.enums.EmpMaritalEnum;
+import com.lll.enums.EmpSexEnum;
+import com.lll.utils.EnumUtil;
 import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
@@ -30,7 +34,7 @@ public class EmployeeForm
      * 员工性别
      * 1为男生，0为女生
      */
-    private Integer empSex;
+    private Integer empSex= EmpSexEnum.MAN.getCode();
 
     /**
      * 员工邮箱
@@ -63,10 +67,29 @@ public class EmployeeForm
      * 1 为已婚
      * 0 为未婚
      */
-    private Integer empMarital;
+    private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode();
 
     /**
      * 备注
      */
     private String empRemarks;
+
+    /**
+     * 获取性别  枚举常量类
+     */
+    @JsonIgnore
+    public EmpSexEnum getEmpSexEnum()
+    {
+        return EnumUtil.getByCode(empSex,EmpSexEnum.class);
+    }
+
+    /**
+     * 获取婚姻状态的枚举类
+     */
+    @JsonIgnore
+    public EmpMaritalEnum getEmpMaritalEnum()
+    {
+        return EnumUtil.getByCode(empMarital,EmpMaritalEnum.class);
+    }
+
 }
