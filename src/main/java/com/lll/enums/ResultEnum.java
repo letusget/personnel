@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public enum ResultEnum
 {
-    EMPLOYEE_NOT_EXIST(100,"该员工不存在");
+    EMPLOYEE_NOT_EXIST(100,"该员工不存在"),
+    EMPLOYEE_EVALUATION_SUCCESS(116, "员工评价修改成功"),
+    EMPLOYEE_DEPARTMENTS_SUCCESS(117,"员工部门修改成功");
 
     /**
      * 错误代码

@@ -17,8 +17,10 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 综合 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">业绩评价</li>
-                <li><a href="/sell/seller/category/list">列表</a></li>
+                <li><a href="/personnel/evaluation/list">列表</a></li>
                 <#--<li><a href="/sell/seller/category/index">新增</a></li>-->
+                <li><a href="/personnel/evaluation/index">新增</a></li>
+
 
                 <li class="dropdown-header">工资发放</li>
                 <li><a href="/sell/seller/product/list">列表</a></li>
@@ -31,8 +33,8 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 部门 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">部门调整</li>
-                <li><a href="/sell/seller/category/list">列表</a></li>
-                <li><a href="/sell/seller/category/index">新增</a></li>
+                <li><a href="/personnel/departments/list">列表</a></li>
+                <li><a href="/personnel/departments/index">新增</a></li>
             </ul>
         </li>
 

@@ -3,7 +3,8 @@ package com.lll.service.impl;
 import com.lll.dao.EmployeesDAO;
 import com.lll.entity.Employees;
 import com.lll.enums.ResultEnum;
-import com.lll.exception.PersonnelExcetption;
+import com.lll.exception.PersonnelException;
+import com.lll.exception.PersonnelException;
 import com.lll.service.EmployeesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -73,7 +74,7 @@ public class EmployeesServiceImpl implements EmployeesService
         //如果员工不存在，就抛出异常：员工不存在
         if (employee==null)
         {
-            throw new PersonnelExcetption(ResultEnum.EMPLOYEE_NOT_EXIST);
+            throw new PersonnelException(ResultEnum.EMPLOYEE_NOT_EXIST);
         }
 
         //TODO 修改员工信息
@@ -94,7 +95,7 @@ public class EmployeesServiceImpl implements EmployeesService
         //如果员工不存在，就抛出异常：员工不存在
         if (employee==null)
         {
-            throw new PersonnelExcetption(ResultEnum.EMPLOYEE_NOT_EXIST);
+            throw new PersonnelException(ResultEnum.EMPLOYEE_NOT_EXIST);
 
         }
         else

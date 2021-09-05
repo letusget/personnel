@@ -42,7 +42,7 @@ public class Employees implements Serializable
     /**
      * 员工照片
      */
-    //这里需要标明这个地段，否则JPA 会自动添加数据库字段，出现问题
+    //这里需要标明这个字段，否则JPA 会自动添加数据库字段，出现问题
     @Column(name="emp_id_photo")
     private String empPhoto;
 
@@ -81,7 +81,7 @@ public class Employees implements Serializable
     /**
      * 员工身份证号码
      */
-    //这里需要标明这个地段，否则JPA 会自动添加数据库字段，出现问题
+    //这里需要标明这个字段，否则JPA 会自动添加数据库字段，出现问题
     @Column(name = "emp_id_card")
     private String empIdCard;
 

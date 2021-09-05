@@ -7,7 +7,7 @@ import lombok.Getter;
  * 自定义异常类
  */
 @Getter
-public class PersonnelExcetption extends RuntimeException
+public class PersonnelException extends RuntimeException
 {
     /**
      * 错误代码
@@ -17,14 +17,14 @@ public class PersonnelExcetption extends RuntimeException
     /**
      * 返回异常消息
      */
-    public PersonnelExcetption(ResultEnum resultEnum)
+    public PersonnelException(ResultEnum resultEnum)
     {
         super(resultEnum.getMessage());
 
         this.code=resultEnum.getCode();
     }
 
-    public PersonnelExcetption(Integer code,String message)
+    public PersonnelException(Integer code,String message)
     {
         super(message);
         this.code=code;

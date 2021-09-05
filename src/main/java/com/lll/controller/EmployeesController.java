@@ -1,7 +1,7 @@
 package com.lll.controller;
 
 import com.lll.entity.Employees;
-import com.lll.exception.PersonnelExcetption;
+import com.lll.exception.PersonnelException;
 import com.lll.form.EmployeeForm;
 import com.lll.service.EmployeesService;
 import com.lll.utils.KeyUtil;
@@ -144,20 +144,16 @@ public class EmployeesController
         {
             if (form.getEmpId()!=null)
             {
-                System.out.println("1  "+form.getEmpId());
                 employees=employeesService.findByEmpId(form.getEmpId());
-                System.out.println("2  "+form.getEmpId());
             }
             else
             {
-                System.out.println("3  "+form.getEmpId());
                 form.setEmpId(KeyUtil.genUniqueKey());
-                System.out.println("4  "+form.getEmpId());
             }
             BeanUtils.copyProperties(form,employees);
             employeesService.save(employees);
 
-        }catch (PersonnelExcetption e)
+        }catch (PersonnelException e)
         {
             map.put("msg",e.getMessage());
             map.put("url","/personnel/employees/index");
