@@ -1,8 +1,11 @@
 package com.lll.controller;
 
+import com.lll.entity.Departments;
 import com.lll.entity.Employees;
+import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
 import com.lll.form.EmployeeForm;
+import com.lll.service.DepartmentsService;
 import com.lll.service.EmployeesService;
 import com.lll.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
@@ -22,6 +25,7 @@ import javax.persistence.criteria.From;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +40,10 @@ public class EmployeesController
     @Autowired
     private EmployeesService employeesService;
 
+    //部门Service
+    @Autowired
+    private DepartmentsService departmentsService;
+
     /**
      * 员工列表
      */
@@ -46,10 +54,10 @@ public class EmployeesController
     {
         PageRequest pageRequest=PageRequest.of(page-1,size);
 
-        //分页查询商品列表
+        //分页查询员工列表
         Page<Employees> employeesPageList=employeesService.findAll(pageRequest);
 
-        //设置商品分页列表
+        //设置员工分页列表
         map.put("employeesPageList",employeesPageList);
         //设置当前页
         map.put("currentPage",page);
@@ -76,18 +84,15 @@ public class EmployeesController
             map.put("employees",employees);
         }
         //查询部门信息
-        //TODO 部门信息
-        /*
-        List<ProductCategory> productCategoryList = productCategoryService.findAll();
 
-        map.put("categoryList", productCategoryList);
+        List<Departments> departmentsList= departmentsService.findAll();
+        map.put("departmentsList",departmentsList);
 
-        return new ModelAndView("product/index",map);
-         */
-
+        /*return new ModelAndView("employees/index",map);*/
         return new ModelAndView("employees/index",map);
 
     }
+
 
     /**
      * 新增员工
@@ -160,6 +165,7 @@ public class EmployeesController
             return new ModelAndView("common/error",map);
         }
 
+        map.put("msg", ResultEnum.EMPLOYEE_SUCCESS.getMessage());
         map.put("url","/personnel/employees/list");
         return new ModelAndView("common/success",map);
 

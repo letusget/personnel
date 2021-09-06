@@ -2,6 +2,7 @@ package com.lll.entity;
 
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -22,6 +23,7 @@ public class Departments implements Serializable
     private String depId;
 
     /** 部门名称 */
+    @Column(name = "dep_name")
     private String depName;
 
     /** 部门描述 */

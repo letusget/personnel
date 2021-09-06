@@ -29,7 +29,27 @@
                             <label>员工迟到</label><input type="text" class="form-control" id="evaLate" name="evaLate" value="${(evaluation.evaLate)!''}"/>
                         </div>
                         <div class="form-group">
-                            <label>员工评级</label><input type="text" class="form-control" id="evaLevel" name="evaLevel" value="${(evaluation.evaLevel)!''}"/>
+                            <label>员工评级</label>
+                            <#--<select name="evaLevel" id="evaLevel" class="form-control">
+                                &lt;#&ndash;<option value="">--请选择--</option>&ndash;&gt;
+                                <option value="A" <#if evaluation.evaLevel?? && evaluation.evaLevel! =="A">selected</#if>>
+                                    A
+                                </option>
+
+                                <option value="B" <#if evaluation.evaLevel?? && evaluation.evaLevel! =="B">selected</#if>>
+                                    B
+                                </option>
+
+                                <option value="C" <#if evaluation.evaLevel?? && evaluation.evaLevel! =="C">selected</#if>>
+                                    C
+                                </option>
+
+                                <option value="B" <#if evaluation.evaLevel?? && evaluation.evaLevel! =="D">selected</#if>>
+                                    D
+                                </option>
+
+                            </select>-->
+                            <input type="text" class="form-control" id="evaLevel" name="evaLevel" value="${(evaluation.evaLevel)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>加班工时</label><input type="text" class="form-control" id="evaOvertime" name="evaOvertime" value="${(evaluation.evaOvertime)!''}"/>

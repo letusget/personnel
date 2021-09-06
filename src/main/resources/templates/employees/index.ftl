@@ -31,57 +31,76 @@
                             </div>
                             <div class="form-group">
                                 <label>员工性别</label>
-                                <input type="text" class="form-control" id="productStock"
-                                       name="getEmpSexEnum().message" value="${(employees.getEmpSexEnum().message)!''}"/>
-                               <#-- <#switch "${employees.empSex}">
-                                    <#case '0'>
-                                        <option value="0" >女</option>
-                                    <#break >
-                                    <#case '1'>
-                                        <option value="1" >男</option>
-                                    <#break >
-                                </#switch>-->
+                                    <#--<select name="empSex"  id="categoryType" class="form-control">
+                                &lt;#&ndash;<option value="">--请选择--</option>&ndash;&gt;
+                                    <option value="0" <#if employees.empSex?? && employees.empSex! ==0>selected</#if>>
+                                        女
+                                    </option>
 
+                                    <option value="1" <#if employees.empSex?? && employees.empSex! ==1>selected</#if>>
+                                        男
+                                    </option>
+                                    </select>-->
 
+                                <input type="text" class="form-control" id="productPrice" name="empSex" value="${(employees.empSex)!''}"/>
+                                <#--<input type="text" class="form-control" id="productStock" placeholder="0为女性，1为男性"
+                                       name="getEmpSexEnum().message" value="${(employees.getEmpSexEnum().message)!''}"/>-->
                             </div>
+
                             <div class="form-group">
                                 <label>员工邮箱</label><input type="text" class="form-control" id="productDescription" name="empEmail" value="${(employees.empEmail)!''}"/>
                             </div>
                             <div class="form-group">
                                 <label>员工手机号码</label><input type="text" class="form-control" id="productName" name="empPhone" value="${(employees.empPhone)!''}"/>
                             </div>
-                            <div class="form-group">
+                            <#--<div class="form-group">
                                 <label>员工部门</label><input type="text" class="form-control" id="productName" name="depName" value="${(employees.depName)!''}"/>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label>员工身份证号码</label><input type="text" class="form-control" id="productName" name="empIdCard" value="${(employees.empIdCard)!''}"/>
                             </div>
+
                             <#--
                             <div class="form-group">
                                 <label>员工入职时间</label><input type="text" class="form-control" id="productName" name="productName" value="${(employees.empEntry)!''}"/>
                             </div>
                             -->
                             <div class="form-group">
-                                <label>员工婚姻状态</label><input type="text" class="form-control" id="productName" name="getEmpMaritalEnum().message" value="${(employees.getEmpMaritalEnum().message)!''}"/>
+                                <label>员工婚姻状态</label>
+                                <#--<select name="empMarital" id="categoryType" class="form-control">
+                                    &lt;#&ndash;<option value="">--请选择--</option>&ndash;&gt;
+                                    <option value="0" <#if employees.empMarital?? && employees.empMarital! ==0>selected</#if>>
+                                        未婚
+                                    </option>
+
+                                    <option value="1" <#if employees.empMarital?? && employees.empMarital! ==1>selected</#if>>
+                                        已婚
+                                    </option>
+                                </select>-->
+
+                                <input type="text" class="form-control" id="productName" name="empMarital" placeholder="0为未婚，1为已婚"
+                                       value="${(employees.empMarital)!''}"/>
+                                <#--<label>员工婚姻状态</label><input type="text" class="form-control" id="productName" name="getEmpMaritalEnum().message"
+                                                            value="${(employees.getEmpMaritalEnum().message)!''}"/>-->
                             </div>
+
                             <div class="form-group">
                                 <label>员工备注</label><input type="text" class="form-control" id="productName" name="empRemarks" value="${(employees.empRemarks)!''}"/>
                             </div>
 
                             <div class="form-group">
-
                                 <label>部门规划</label>
-                                <select name="depId" id="categoryType" class="form-control">
+                                <select name="depName" id="categoryType" class="form-control">
                                     <#--部门信息-->
-                                   <#--
-                                   <#list categoryList as category>
-                                        <option value="${category.categoryType}"
-                                        <#if (product.categoryType)?? && product.categoryType == category.categoryType> selected </#if> >
-                                            ${category.categoryName}
+                                   <#list departmentsList as departments>
+                                        <option value="${departments.depName}"
+                                        <#if (employees.depName)?? && employees.depName == departments.depName> selected </#if> >
+                                            ${departments.depName}
                                         </option>
-                                    </#list>-->
+                                    </#list>
                                 </select>
                             </div>
+
                             <button type="submit" class="btn btn-default">提交结果</button>
                             <input  type="hidden" name="empId" value="${(employees.empId)!''}">
                         </form>

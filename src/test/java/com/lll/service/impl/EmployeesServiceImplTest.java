@@ -31,7 +31,7 @@ public class EmployeesServiceImplTest {
         employees.setEmpSex(0);
         employees.setEmpEmail("klajdfajfklj@qq.com");
         employees.setEmpPhone("14758429512");
-        employees.setDepId("1");
+        //employees.setDepId("1");
         employees.setDepName("底层架构组");
         employees.setEmpIdCard("147854135894158453158");
         employees.setEmpRemarks("yes!");

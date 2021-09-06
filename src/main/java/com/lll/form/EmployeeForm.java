@@ -49,7 +49,7 @@ public class EmployeeForm
     /**
      * 员工部门编号
      */
-    private String depId;
+    //private String depId;
 
     /**
      * 员工部门名称
@@ -73,6 +73,10 @@ public class EmployeeForm
      * 备注
      */
     private String empRemarks;
+
+    /**
+     * 获取 部门枚举常量
+     */
 
     /**
      * 获取性别  枚举常量类
