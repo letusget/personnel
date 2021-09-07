@@ -7,17 +7,23 @@ import com.lll.exception.SalariesException;
 import com.lll.form.SalariesForm;
 import com.lll.service.ISalariesService;
 import com.lll.utils.KeyUtil;
+import freemarker.template.utility.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.Map;
 
 
@@ -79,27 +85,29 @@ public class SalariesController
         return new ModelAndView("salaries/index",map);
     }
 
+
     /**
      * 保存/更新 工资表信息
      * @param salariesForm
      * @param bindingResult
-     * @param map
+     * @param request
      * @return
      */
     @PostMapping("/save")
-    public ModelAndView save(@Valid SalariesForm salariesForm, BindingResult bindingResult, Map<String,Object>map)
+    public ModelAndView save(@Valid SalariesForm salariesForm, BindingResult bindingResult, HttpServletRequest request)
     {
+        HttpSession session = request.getSession();
         if (bindingResult.hasErrors())
         {
-            map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url","/personnel/salaries/index");
-            return new ModelAndView("common/error",map);
+            session.setAttribute("msg",bindingResult.getFieldError().getDefaultMessage());
+            session.setAttribute("url",request.getContextPath()+"/salaries/index");
+            return new ModelAndView("common/error");
         }
         Salaries salaries = new Salaries();
         try
         {
             // 如果员工编号不为空,说明是修改工资信息
-            if (salariesForm.getEmpId() != null)
+            if (StringUtils.hasText(salariesForm.getEmpId()))
             {
                 salaries = salariesService.findById(salariesForm.getEmpId());
             } else // 如果员工编号为空,说明是新建工资信息
@@ -110,17 +118,27 @@ public class SalariesController
             // 将form中的数据传到salaries对象中
             BeanUtils.copyProperties(salariesForm,salaries);
 
+            // 最终金额
+            BigDecimal salFinal;
+
+            // 计算最终金额
+            salFinal = salaries.getSalBase().add(salaries.getSalBonus()).add(salaries.getSalBenefits()).subtract(salaries.getSalFine());
+
+            // 将最终金额传入数据库中
+            salaries.setSalFinal(salFinal);
+
             // 工资信息入库
             salariesService.save(salaries);
+
         } catch (SalariesException e)
         {
-            map.put("msg",e.getMessage());
-            map.put("url","/personnel/salaries/index");
-            return new ModelAndView("common/error",map);
+            session.setAttribute("msg",e.getMessage());
+            session.setAttribute("url","/personnel/salaries/index");
+            return new ModelAndView("common/error");
         }
 
-        map.put("msg", ResultEnum.EMPLOYEE_SALARIES_SUCCESS.getMessage());
-        map.put("url","/personnel/salaries/list");
-        return new ModelAndView("common/success",map);
+        session.setAttribute("msg", ResultEnum.EMPLOYEE_SALARIES_SUCCESS.getMessage());
+        session.setAttribute("url","/personnel/salaries/list");
+        return new ModelAndView("common/success");
     }
 }

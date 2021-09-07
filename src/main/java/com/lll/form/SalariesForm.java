@@ -3,6 +3,7 @@ package com.lll.form;
 import lombok.Data;
 
 import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 
 /**
@@ -56,12 +57,13 @@ public class SalariesForm
     private BigDecimal salBenefits;
 
     /**
-     * 最终金额
-     */
-    private BigDecimal salFinal;
-
-    /**
      * 备注
      */
     private String salRemarks;
+
+    /**
+     * 最终金额
+     */
+    @Transient
+    private BigDecimal salFinal;
 }
