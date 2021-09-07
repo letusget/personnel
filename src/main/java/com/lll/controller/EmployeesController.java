@@ -97,7 +97,7 @@ public class EmployeesController
     /**
      * 新增员工
      */
-    /*@PostMapping("/save")
+    @PostMapping("/save")
     public ModelAndView save(@Valid EmployeeForm form, BindingResult bindingResult, HttpServletRequest request)
     {
         HttpSession session=request.getSession();
@@ -117,24 +117,25 @@ public class EmployeesController
             }
             else
             {
-                form.setDepId(KeyUtil.genUniqueKey());
+                form.setEmpId(KeyUtil.genUniqueKey());
             }
             //将form 中的对象 copy 给employees
             BeanUtils.copyProperties(form,employees);
             //保存 员工信息
             employeesService.save(employees);
-        }catch (PersonnelExcetption e)
+        }catch (PersonnelException e)
         {
             session.setAttribute("msg",e.getMessage());
             session.setAttribute("url",request.getContextPath()+"/employees/index");
             return new ModelAndView("common/error");
         }
+        session.setAttribute("msg",ResultEnum.EMPLOYEE_SUCCESS.getMessage());
         session.setAttribute("url",request.getContextPath()+"/employees/list");
         return new ModelAndView("common/success");
 
-    }*/
+    }
 
-    @PostMapping("/save")
+/*    @PostMapping("/save")
     public ModelAndView save(@Valid EmployeeForm form, BindingResult bindingResult, Map<String,Object> map)
     {
         if (bindingResult.hasErrors())
@@ -153,7 +154,12 @@ public class EmployeesController
             }
             else
             {
+            //这里会报错：target must not be null,我努力尝试，这里的问题是form 中为空，导致的，具体就是form中的empId 属性为空导致的，在
+            //调试时，即使 empId 属性为空，判断为新增是，也不会进行 setEmpID 操作，就导致form中有一个空字段，出现这个错误
+            //目前我无法解决这个问题，感觉是底层哪里的问题，所以就索性使用HttpServletRequest重新写了一遍代码
                 form.setEmpId(KeyUtil.genUniqueKey());
+                String getEmpId=form.getEmpId();
+                System.out.println(getEmpId);
             }
             BeanUtils.copyProperties(form,employees);
             employeesService.save(employees);
@@ -169,7 +175,7 @@ public class EmployeesController
         map.put("url","/personnel/employees/list");
         return new ModelAndView("common/success",map);
 
-    }
+    }*/
 
 
 }

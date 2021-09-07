@@ -26,7 +26,8 @@
                             <label>部门名称</label><input type="text" class="form-control" id="depName" name="depName" value="${(departments.depName)!''}"/>
                         </div>
                         <div class="form-group">
-                            <label>部门描述</label><input type="text" class="form-control" id="depDescribes" name="depDescribes" value="${(departments.depDescribes)!''}"/>
+                            <label>部门描述</label><input type="text" class="form-control" id="depDescribes" placeholder="简明扼要"
+                                                      name="depDescribes" value="${(departments.depDescribes)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>备注</label><input type="text" class="form-control" id="depRemarks" name="depRemarks" value="${(departments.depRemarks)!''}"/>

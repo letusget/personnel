@@ -22,7 +22,7 @@
                             <div class="form-group">
                                 <label>员工照片</label>
                                 <img height="100px;" width="100px;" src="${(employees.empPhoto)!''}" alt="该图片不存在!"/> <br/>
-                                <input id="productIcon" name="empPhoto" type="text"  value="${(employees.empPhoto)!''}" width="50%"/>
+                                <input id="productIcon" name="empPhoto" type="text" placeholder="建议使用在线图床图片" value="${(employees.empPhoto)!''}" width="50%"/>
                             </div>
 
                             <div class="form-group">
@@ -42,7 +42,8 @@
                                     </option>
                                     </select>-->
 
-                                <input type="text" class="form-control" id="productPrice" name="empSex" value="${(employees.empSex)!''}"/>
+                                <input type="text" class="form-control" id="productStock" name="empSex" placeholder="0 为女性，1 为男性"
+                                       value="${(employees.empSex)!''}"/>
                                 <#--<input type="text" class="form-control" id="productStock" placeholder="0为女性，1为男性"
                                        name="getEmpSexEnum().message" value="${(employees.getEmpSexEnum().message)!''}"/>-->
                             </div>

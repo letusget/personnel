@@ -23,10 +23,12 @@
                         </div>
                         -->
                         <div class="form-group">
-                            <label>员工出勤</label><input type="text" class="form-control" id="evaAttendance" name="evaAttendance" value="${(evaluation.evaAttendance)!''}"/>
+                            <label>员工出勤</label><input type="text" class="form-control" id="evaAttendance" placeholder="天数，满勤为22天"
+                                                      name="evaAttendance" value="${(evaluation.evaAttendance)!''}"/>
                         </div>
                         <div class="form-group">
-                            <label>员工迟到</label><input type="text" class="form-control" id="evaLate" name="evaLate" value="${(evaluation.evaLate)!''}"/>
+                            <label>员工迟到</label><input type="text" class="form-control" id="evaLate" placeholder="迟到每人每天￥20"
+                                                      name="evaLate" value="${(evaluation.evaLate)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>员工评级</label>
@@ -49,10 +51,12 @@
                                 </option>
 
                             </select>-->
-                            <input type="text" class="form-control" id="evaLevel" name="evaLevel" value="${(evaluation.evaLevel)!''}"/>
+                            <input type="text" class="form-control" id="evaLevel" name="evaLevel" placeholder="A(优) B(良) C(中) D(差)"
+                                   value="${(evaluation.evaLevel)!''}"/>
                         </div>
                         <div class="form-group">
-                            <label>加班工时</label><input type="text" class="form-control" id="evaOvertime" name="evaOvertime" value="${(evaluation.evaOvertime)!''}"/>
+                            <label>加班工时</label><input type="text" class="form-control" id="evaOvertime" placeholder="按小时计算"
+                                                      name="evaOvertime" value="${(evaluation.evaOvertime)!''}"/>
                         </div>
                         <div class="form-group">
                             <label>员工备注</label><input type="text" class="form-control" id="evaRemarks" name="evaRemarks" value="${(evaluation.evaRemarks)!''}"/>

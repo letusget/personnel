@@ -14,7 +14,8 @@
                             <form role="form" method="post" action="/personnel/salaries/save">
                                 <div class="form-group">
                                     <label>员工姓名</label>
-                                    <input name="empName" type="text" class="form-control" value="${(salaries.empName)!''}"/>
+                                    <input name="empName" type="text" class="form-control"
+                                           value="${(salaries.empName)!''}"/>
                                 </div>
                                 <div class="form-group">
                                     <label>基本金额</label>

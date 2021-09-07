@@ -40,7 +40,7 @@
         </li>
 
         <li>
-            <a href="/personnel/seller/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
+            <a href="/personnel/common/logout"><i class="fa fa-fw fa-list-alt"></i> 登出</a>
         </li>
     </ul>
 </nav>
