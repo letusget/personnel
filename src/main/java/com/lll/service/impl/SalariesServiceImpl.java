@@ -3,6 +3,8 @@ package com.lll.service.impl;
 import com.lll.dao.ISalariesDAO;
 import com.lll.DTO.SalariesDTO;
 import com.lll.entity.Salaries;
+import com.lll.enums.ResultEnum;
+import com.lll.exception.PersonnelException;
 import com.lll.service.ISalariesService;
 import com.lll.utils.KeyUtil;
 import org.springframework.beans.BeanUtils;
@@ -66,9 +68,21 @@ public class SalariesServiceImpl implements ISalariesService
      * @param empId
      */
     @Override
-    public void deleteById(String empId)
+    public void delete(String empId)
     {
-        salariesDAO.deleteById(empId);
+        //根据员工ID 查询员工信息
+        Salaries salaries = salariesDAO.findById(empId).orElse(null);
+
+        //如果员工不存在，就抛出异常：员工不存在
+        if (salaries == null)
+        {
+            throw new PersonnelException(ResultEnum.EMPLOYEE_SALARIES_NOT_EXIST);
+        }
+
+        else
+        {
+            salariesDAO.delete(salaries);
+        }
     }
 
 }

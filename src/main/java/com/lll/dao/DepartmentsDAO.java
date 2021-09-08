@@ -1,4 +1,4 @@
-package com.lll.DTO;
+package com.lll.dao;
 
 import com.lll.entity.Departments;
 import org.springframework.data.jpa.repository.JpaRepository;

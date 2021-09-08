@@ -19,9 +19,11 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
+      #enable_lazy_load_no_trans: true #使用延时加载时控制Session的生命周期  修改
+      #dialect: org.hibernate.dialect.MySQL5Dialect  #修改
       ddl-auto: update #如果这里是create，则在每次更新后台之后，数据库中的内容都会被清空
     show-sql: true
-    open-in-view: false
+    open-in-view: false  #使用延时加载，控制 Session 的生命周期  #修改
 server: #配置应用名
   servlet:
     context-path: /personnel

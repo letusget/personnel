@@ -141,4 +141,27 @@ public class SalariesController
         session.setAttribute("url","/personnel/salaries/list");
         return new ModelAndView("common/success");
     }
+
+    /**
+     * 删除 工资表信息
+     * @param empId
+     * @param map
+     * @return
+     */
+    @GetMapping("/delete")
+    public ModelAndView delete(@RequestParam("empId")String empId,Map<String,Object>map)
+    {
+        try
+        {
+            salariesService.delete(empId);
+        } catch (SalariesException e)
+        {
+            map.put("msg",e.getMessage());
+            map.put("url","/personnel/salaries/list");
+            return new ModelAndView("common/error",map);
+        }
+        map.put("msg",ResultEnum.EMPLOYEE_SALARIES_SUCCESS.getMessage());
+        map.put("url","/personnel/salaries/list");
+        return new ModelAndView("common/success",map);
+    }
 }

@@ -44,6 +44,7 @@
                                 <td>${salaries.salFinal}</td>
                                 <td>${salaries.salRemarks}</td>
                                 <td><a href="/personnel/salaries/index?empId=${salaries.empId}">修改</a></td>
+                                <td><a href="/personnel/salaries/delete?empId=${salaries.empId}">删除</a></td>
                             </tr>
                         </#list>
                         </tbody>

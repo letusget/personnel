@@ -24,6 +24,9 @@ public interface DepartmentsService
     /** 修改*/
     Departments update(Departments departments);
 
-    /**  删除  */
-    void delete(String depId);
+    /**
+     * 删除员工信息
+     */
+    void delete(String empId);
+    //EmployeesDTO delete(String empId);
 }

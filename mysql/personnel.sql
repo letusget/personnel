@@ -11,7 +11,7 @@
  Target Server Version : 80023
  File Encoding         : 65001
 
- Date: 06/09/2021 20:50:21
+ Date: 08/09/2021 15:04:26
 */
 
 SET NAMES utf8mb4;
@@ -63,6 +63,7 @@ INSERT INTO `employees` VALUES ('20210101', 'https://tvax3.sinaimg.cn/large/006x
 INSERT INTO `employees` VALUES ('EOHWX6Om', 'https://tvax4.sinaimg.cn/large/006x3t5Xgy1gu4z6sowa6j60hr0ew74e02.jpg', '王小花', 0, 'klajdfajfklj@qq.com', '14758429512', '测试组', '147854135894158453158', '2021-09-04', 0, '新员工3');
 INSERT INTO `employees` VALUES ('lAF81ZMq', 'https://tvax4.sinaimg.cn/large/006x3t5Xgy1gu5yychkxjj60m80xc77a02.jpg', '孙小美', 0, 'jkasfhjk@qq.com', '14785428922', '测试组', '14854125841239686541', '2021-09-05', 0, '新员工2');
 INSERT INTO `employees` VALUES ('t93pHrIt', 'https://tva1.sinaimg.cn/large/006x3t5Xgy1gu4p0vap1pj60gd0gt0y302.jpg', '张三', 1, '3038845564@qq.com', '13145148542', '底层架构组', '35128456521541528455', '2021-09-04', 0, '新员工');
+INSERT INTO `employees` VALUES ('ZXqiKbkg', 'https://tva4.sinaimg.cn/large/006x3t5Xgy1gu5yyw1rvfj60u0160ta502.jpg', '张小丽', 0, 'kldfjj@126.com', '15881248952', '测试组', '320147584125485215', '2021-09-07', 0, 'test');
 
 -- ----------------------------
 -- Table structure for evaluation
@@ -118,5 +119,23 @@ CREATE TABLE `salaries`  (
 -- Records of salaries
 -- ----------------------------
 INSERT INTO `salaries` VALUES ('20210101', '夏海藻', 8000, 1000, '满勤，评级为A', 100, '多次迟到', 1100, 10000, '员工');
+INSERT INTO `salaries` VALUES ('BOmIT9zx', '张小丽', 500, 100, '评级为A', 100, '多次迟到', 100, 600, '可以');
+INSERT INTO `salaries` VALUES ('CQdL9nSk', '孙小美', 5000, 1000, '1', 1000, '2', 2000, 7000, 'nice！');
+
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  PRIMARY KEY (`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('1', 'root', '123456');
 
 SET FOREIGN_KEY_CHECKS = 1;

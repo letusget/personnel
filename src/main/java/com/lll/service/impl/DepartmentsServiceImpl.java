@@ -1,11 +1,10 @@
 package com.lll.service.impl;
 
-import com.lll.DTO.DepartmentsDAO;
+import com.lll.dao.DepartmentsDAO;
 import com.lll.entity.Departments;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
 import com.lll.service.DepartmentsService;
-import com.lll.exception.PersonnelException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
