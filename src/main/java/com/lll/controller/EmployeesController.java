@@ -49,7 +49,7 @@ public class EmployeesController
      */
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                             @RequestParam(value = "size",defaultValue = "10") Integer size,
+                             @RequestParam(value = "size",defaultValue = "4") Integer size,
                              Map<String,Object> map)
     {
         PageRequest pageRequest=PageRequest.of(page-1,size);
