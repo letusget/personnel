@@ -1,25 +1,27 @@
 package com.lll.service;
 
 
+import com.lll.dao.UserDAO;
+import com.lll.entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-/*
-public interface UserService
+import java.util.List;
+
+@Service
+public class UserService
 {
-    /**
-     * 注册用户
-     * /
-    User insertUser(User user);
+    @Autowired
+    private UserDAO userDAO;
 
-    /**
-     * 确定该用户是否已经被注册，
-     * 根据用户名，查找用户信息
-     * /
-    User selectByUser(String username);
+    public boolean verifyUser(User user)
+    {
+        List<User> userList=userDAO.findByUsernameAndPassword
+                (user.getUsername(),user.getPassword());
 
-    /**
-     * 接受用户名 和密码 ，进行注册
-     * /
-    User register(String username,String password);
+
+        return userList.size()>0;
+    }
+
 }
 
-*/

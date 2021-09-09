@@ -11,7 +11,7 @@
  Target Server Version : 80023
  File Encoding         : 65001
 
- Date: 08/09/2021 15:04:26
+ Date: 09/09/2021 16:10:51
 */
 
 SET NAMES utf8mb4;
@@ -76,13 +76,18 @@ CREATE TABLE `evaluation`  (
   `eva_level` char(2) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
   `eva_overtime` int(0) NULL DEFAULT NULL,
   `eva_remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`emp_id`) USING BTREE
+  PRIMARY KEY (`emp_id`) USING BTREE,
+  INDEX `emp_id`(`emp_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of evaluation
 -- ----------------------------
 INSERT INTO `evaluation` VALUES ('20210101', 22, 5, 'B', 12, '员工');
+INSERT INTO `evaluation` VALUES ('EOHWX6Om', 22, 2, 'A', 1, '满勤');
+INSERT INTO `evaluation` VALUES ('lAF81ZMq', 20, 3, 'B', 3, '缺勤');
+INSERT INTO `evaluation` VALUES ('t93pHrIt', 20, 4, 'C', 2, '业务能力差');
+INSERT INTO `evaluation` VALUES ('ZXqiKbkg', 20, 8, 'B', 5, '一般');
 
 -- ----------------------------
 -- Table structure for hibernate_sequence
@@ -119,23 +124,28 @@ CREATE TABLE `salaries`  (
 -- Records of salaries
 -- ----------------------------
 INSERT INTO `salaries` VALUES ('20210101', '夏海藻', 8000, 1000, '满勤，评级为A', 100, '多次迟到', 1100, 10000, '员工');
-INSERT INTO `salaries` VALUES ('BOmIT9zx', '张小丽', 500, 100, '评级为A', 100, '多次迟到', 100, 600, '可以');
-INSERT INTO `salaries` VALUES ('CQdL9nSk', '孙小美', 5000, 1000, '1', 1000, '2', 2000, 7000, 'nice！');
+INSERT INTO `salaries` VALUES ('EOHWX6Om', '王小花', 6000, 1000, 'B', 500, '表现不佳', 500, 7000, '再接再厉');
+INSERT INTO `salaries` VALUES ('lAF81ZMq', '孙小美', 5000, 1000, '1', 1000, '2', 2000, 7000, 'nice！');
+INSERT INTO `salaries` VALUES ('t93pHrIt', '张三', 800, 50, 'A', 0, '可以', 50, 900, '好');
+INSERT INTO `salaries` VALUES ('ZXqiKbkg', '张小丽', 500, 100, '评级为A', 100, '多次迟到', 100, 600, '可以');
 
 -- ----------------------------
 -- Table structure for users
 -- ----------------------------
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`  (
+  `id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `user_name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `user_password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  PRIMARY KEY (`user_id`) USING BTREE
+  `user_remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('1', 'root', '123456');
+INSERT INTO `users` VALUES ('1001', '1', 'root', '123456', '管理员');
+INSERT INTO `users` VALUES ('1002', '2', 'manager', '123456', '经理');
 
 SET FOREIGN_KEY_CHECKS = 1;
