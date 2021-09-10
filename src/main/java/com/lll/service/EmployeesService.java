@@ -44,4 +44,13 @@ public interface EmployeesService
     void delete(String empId);
     //EmployeesDTO delete(String empId);
 
+
+    /**
+     * 根据姓名查询
+     *
+     * @return
+     */
+    EmployeesDTO findByEmpName(String empName);
+
+
 }

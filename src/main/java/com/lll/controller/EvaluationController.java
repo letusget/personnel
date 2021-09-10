@@ -41,10 +41,10 @@ public class EvaluationController
     {
         PageRequest pageRequest=PageRequest.of(page-1,size);
 
-        //分页查询商品列表
+        //分页查询员工列表
         Page<Evaluation> evaluationPageList=evaluationService.findAll(pageRequest);
 
-        //设置商品分页列表
+        //设置员工分页列表
         map.put("evaluationPageList",evaluationPageList);
         //设置当前页
         map.put("currentPage",page);

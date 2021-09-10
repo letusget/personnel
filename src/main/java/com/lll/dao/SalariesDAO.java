@@ -1,5 +1,6 @@
 package com.lll.dao;
 
+import com.lll.entity.Employees;
 import com.lll.entity.Salaries;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -9,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @version 1.0
  * @date 2021/9/1
  */
-public interface ISalariesDAO extends JpaRepository<Salaries,String>
+public interface SalariesDAO extends JpaRepository<Salaries,String>
 {
-
+    Salaries findByEmpName(String empName);
 }

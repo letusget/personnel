@@ -14,7 +14,7 @@ public interface DepartmentsService
     List<Departments> findAll();
 
     /**
-     * 分页查询所有员工信息
+     * 分页查询所有部门信息
      */
     Page<Departments> findAll(Pageable pageable);
 
@@ -25,7 +25,7 @@ public interface DepartmentsService
     Departments update(Departments departments);
 
     /**
-     * 删除员工信息
+     * 删除部门信息
      */
     void delete(String empId);
     //EmployeesDTO delete(String empId);

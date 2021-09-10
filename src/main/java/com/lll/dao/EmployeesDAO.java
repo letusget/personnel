@@ -17,4 +17,5 @@ public interface EmployeesDAO extends JpaRepository<Employees,String>
      */
     List<Employees> queryByEmpName(String empName);
 
+    Employees findByEmpName(String empName);
 }

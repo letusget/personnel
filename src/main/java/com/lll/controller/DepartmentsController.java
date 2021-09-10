@@ -37,10 +37,10 @@ public class DepartmentsController {
       Map<String, Object> map) {
     PageRequest pageRequest = PageRequest.of(page - 1, size);
 
-    // 分页查询商品列表
+    // 分页查询部门列表
     Page<Departments> departmentsPageList = departmentsService.findAll(pageRequest);
 
-    // 设置商品分页列表
+    // 设置部门分页列表
     map.put("departmentsPageList", departmentsPageList);
     // 设置当前页
     map.put("currentPage", page);

@@ -1,13 +1,13 @@
 package com.lll.controller;
 
 
+import com.lll.DTO.SalariesDTO;
 import com.lll.entity.Salaries;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.SalariesException;
 import com.lll.form.SalariesForm;
-import com.lll.service.ISalariesService;
+import com.lll.service.SalariesService;
 import com.lll.utils.KeyUtil;
-import freemarker.template.utility.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.math.BigDecimal;
@@ -40,7 +39,7 @@ import java.util.Map;
 public class SalariesController
 {
     @Autowired
-    private ISalariesService salariesService;
+    private SalariesService salariesService;
 
     /**
      * 分页查询工资表
@@ -163,5 +162,32 @@ public class SalariesController
         map.put("msg",ResultEnum.EMPLOYEE_SALARIES_SUCCESS.getMessage());
         map.put("url","/personnel/salaries/list");
         return new ModelAndView("common/success",map);
+    }
+
+    @GetMapping("/search")
+    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName, Map<String, Object> map) {
+        if (empName != null) {
+
+        }
+        return new ModelAndView("salaries/search", map);
+    }
+
+
+    @GetMapping("/result")
+    public ModelAndView result(@RequestParam("empName") String empName, Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        SalariesDTO salariesDTO = new SalariesDTO();
+        try {
+            salariesDTO = salariesService.findByEmpName(empName);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/sell
+            map.put("url", contextPath + "/salaries/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        map.put("salaries", salariesDTO);
+        return new ModelAndView("salaries/result", map);
     }
 }

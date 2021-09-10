@@ -1,5 +1,6 @@
 package com.lll.service;
 
+import com.lll.DTO.EmployeesDTO;
 import com.lll.DTO.SalariesDTO;
 import com.lll.entity.Salaries;
 import org.springframework.data.domain.Page;
@@ -11,7 +12,7 @@ import org.springframework.data.domain.Pageable;
  * @version 1.0
  * @date 2021/9/1
  */
-public interface ISalariesService
+public interface SalariesService
 {
     /**
      * 根据员工编号查询员工工资信息
@@ -41,4 +42,10 @@ public interface ISalariesService
      */
     void delete(String empId);
 
+    /**
+     * 根据姓名查询
+     *
+     * @return
+     */
+    SalariesDTO findByEmpName(String empName);
 }

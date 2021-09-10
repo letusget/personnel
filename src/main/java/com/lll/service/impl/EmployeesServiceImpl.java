@@ -2,29 +2,34 @@ package com.lll.service.impl;
 
 import com.lll.dao.EvaluationDAO;
 import com.lll.dao.EmployeesDAO;
-import com.lll.dao.ISalariesDAO;
+import com.lll.dao.SalariesDAO;
 import com.lll.entity.Employees;
 import com.lll.entity.Evaluation;
 import com.lll.entity.Salaries;
+import com.lll.DTO.EmployeesDTO;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
 import com.lll.service.EmployeesService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Service
+@Slf4j
 public class EmployeesServiceImpl implements EmployeesService
 {
     @Autowired
     private EmployeesDAO employeesDAO;
 
     @Autowired
-    private ISalariesDAO salariesDAO;
+    private SalariesDAO salariesDAO;
 
     @Autowired
     private EvaluationDAO evaluationDAO;
@@ -39,6 +44,7 @@ public class EmployeesServiceImpl implements EmployeesService
     public Employees findByEmpId(String empId) {
         return employeesDAO.findById(empId).orElse(null);
     }
+
 
     /**
      * 查询所有员工信息  不分页
@@ -157,4 +163,21 @@ public class EmployeesServiceImpl implements EmployeesService
         }
 
     }
+
+    @Override
+    public EmployeesDTO findByEmpName(String empName)
+    {
+        // 根据员工姓名查询 员工信息
+        Employees employees = employeesDAO.findByEmpName(empName);
+        if (employees == null)
+        {
+            throw new PersonnelException(ResultEnum.EMPLOYEE_NOT_EXIST);
+        }
+
+        EmployeesDTO  employeesDTO = new EmployeesDTO();
+        BeanUtils.copyProperties(employees, employeesDTO);
+        return employeesDTO;
+    }
+
+
 }

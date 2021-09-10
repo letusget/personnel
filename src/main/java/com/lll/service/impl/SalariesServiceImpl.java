@@ -1,12 +1,11 @@
 package com.lll.service.impl;
 
-import com.lll.dao.ISalariesDAO;
+import com.lll.dao.SalariesDAO;
 import com.lll.DTO.SalariesDTO;
 import com.lll.entity.Salaries;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
-import com.lll.service.ISalariesService;
-import com.lll.utils.KeyUtil;
+import com.lll.service.SalariesService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * 工资表 Service层实现类
@@ -25,10 +22,10 @@ import java.math.BigInteger;
  */
 @Service
 @Transactional
-public class SalariesServiceImpl implements ISalariesService
+public class SalariesServiceImpl implements SalariesService
 {
     @Autowired
-    private ISalariesDAO salariesDAO;
+    private SalariesDAO salariesDAO;
 
     /**
      * 根据员工编号查询员工工资信息
@@ -85,4 +82,19 @@ public class SalariesServiceImpl implements ISalariesService
         }
     }
 
+    @Override
+    public SalariesDTO findByEmpName(String empName)
+    {
+        // 根据员工姓名查询 员工信息
+        Salaries salaries = salariesDAO.findByEmpName(empName);
+        if (salaries == null)
+        {
+            throw new PersonnelException(ResultEnum.EMPLOYEE_NOT_EXIST);
+        }
+
+
+        SalariesDTO  salariesDTO = new SalariesDTO();
+        BeanUtils.copyProperties(salaries, salariesDTO);
+        return salariesDTO;
+    }
 }

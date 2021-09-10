@@ -26,7 +26,7 @@
                             <th>保险福利</th>
                             <th>最终金额</th>
                             <th>备注</th>
-                            <th>操作</th>
+                            <th colspan="2">操作</th>
                         </tr>
                         </thead>
                         <tbody>

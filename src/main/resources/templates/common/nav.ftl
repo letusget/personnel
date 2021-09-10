@@ -11,7 +11,7 @@
 
             <li><a href="/personnel/employees/list">员工</a></li>
             <li><a href="/personnel/employees/index">新增</a></li>
-
+            <li><a href="/personnel/employees/search">查询</a></li>
         </li>
 
         <li class="dropdown open">
@@ -19,14 +19,13 @@
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">业绩评价</li>
                 <li><a href="/personnel/evaluation/list">列表</a></li>
-                <#--<li><a href="/sell/seller/category/index">新增</a></li>-->
-                <li><a href="/personnel/evaluation/index">新增</a></li>
+                <#--<li><a href="/personnel/evaluation/index">新增</a></li>-->
 
 
                 <li class="dropdown-header">工资发放</li>
                 <li><a href="/personnel/salaries/list">列表</a></li>
-                <li><a href="/personnel/salaries/index">新增</a></li>
-
+                <#--<li><a href="/personnel/salaries/index">新增</a></li>-->
+                <li><a href="/personnel/salaries/search">查询</a></li>
             </ul>
         </li>
 

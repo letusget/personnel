@@ -45,7 +45,7 @@ public class UserController
 
         //System.out.println("test");
 
-        boolean verify= userService.verifyUser(user);
+        boolean verify= userService. verifyUser(user);
         //boolean verify=true;
 
         if (verify)
