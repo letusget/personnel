@@ -110,7 +110,8 @@ public class EmployeesController {
             //如果empId 有值，则说明是修改
             if (StringUtils.hasText(form.getEmpId())) {
                 employees = employeesService.findByEmpId(form.getEmpId());
-            } else {
+            } else
+            {
                 form.setEmpId(KeyUtil.genUniqueKey());
             }
             //将form 中的对象 copy 给employees

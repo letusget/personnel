@@ -81,14 +81,15 @@ public class EmployeesServiceImpl implements EmployeesService
         //salaries(Id,employees.getEmpName(),8000,0,"无",0,"",0,8000,"");
         salaries.setEmpId(Id);
         salaries.setEmpName(employees.getEmpName());
-        salaries.setSalBase(new BigDecimal(8000));
+        salaries.setSalBase(new BigDecimal(800));
         salaries.setSalBonus(new BigDecimal(0));
         salaries.setSalBonusDescribes("无");
         salaries.setSalFine(new BigDecimal(0));
         salaries.setSalFineDescribes("无");
-        salaries.setSalBenefits(new BigDecimal(1000));
-        salaries.setSalFinal(new BigDecimal(9000));
+        salaries.setSalBenefits(new BigDecimal(100));
+        salaries.setSalFinal(new BigDecimal(900));
         salaries.setSalRemarks("无");
+
 
         evaluation.setEmpId(Id);
         evaluation.setEvaAttendance(22);
@@ -101,6 +102,8 @@ public class EmployeesServiceImpl implements EmployeesService
         salariesDAO.save(salaries);
         evaluationDAO.save(evaluation);
         //新增员工 工资信息
+
+
         return employeesDAO.save(employees);
     }
 

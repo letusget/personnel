@@ -35,8 +35,8 @@ public class Employees implements Serializable
     @Id
     //用自定义主键策略 生成自定义主键ID
     //参考：https://www.cnblogs.com/DevMuYuer/p/10088425.html
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "emp-id")
-    @GenericGenerator(name = "emp-id", strategy = "com.lll.utils.EmpIDGenerator")
+    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "emp-id")
+    //@GenericGenerator(name = "emp-id", strategy = "com.lll.utils.EmpIDGenerator")
     private String empId;
 
     /**

@@ -111,7 +111,7 @@
                             </li>
                         <#else>
                             <li>
-                                <a href="/personnel/employees/list?page=${currentPage + 1}&size=${pageSize}">上一页</a>
+                                <a href="/personnel/employees/list?page=${currentPage + 1}&size=${pageSize}">下一页</a>
                             </li>
                         </#if>
                         <!-- 下一页处理  end-->
