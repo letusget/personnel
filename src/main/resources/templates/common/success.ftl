@@ -39,7 +39,7 @@
                 <div class="alert alert-dismissable alert-success">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h4>
-                        操作订单成功!  <strong>${msg!""}</strong>
+                        操作成功!  <strong>${msg!""}</strong>
                     </h4>
                     即将跳转页面:
                     <a href="${url}" class="alert-link" style='text-decoration:none;'>3</a><strong><span>s 后自动跳转</span></strong>

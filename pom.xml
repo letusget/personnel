@@ -23,6 +23,8 @@
         <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
     </properties>
 
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,6 +54,16 @@
             <optional> true </optional>
         </dependency>
         <!--配置注解执行器 end-->
+
+        <!--spring-cloud start-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>Finchley.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <!--spring-cloud end-->
 
         <!--访问页面 start -->
         <dependency>

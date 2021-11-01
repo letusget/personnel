@@ -1,12 +1,13 @@
+<#--
 <html>
 <#include "../common/header.ftl">
 
 <body>
 <div id="wrapper" class="toggled">
-    <#-- 边栏sidebar -->
+    &lt;#&ndash; 边栏sidebar &ndash;&gt;
     <#include "../common/nav.ftl">
 
-    <#-- 主要内容content start -->
+    &lt;#&ndash; 主要内容content start &ndash;&gt;
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -52,7 +53,8 @@
             </div>
         </div>
     </div>
-    <#-- 主要内容content end -->
+    &lt;#&ndash; 主要内容content end &ndash;&gt;
 </div>
 </body>
 </html>
+-->

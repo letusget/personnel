@@ -7,11 +7,11 @@
         </li>
         <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 在职 <span class="caret"></span></a>
-            <li class="dropdown-header">员工信息</li>
+        <li class="dropdown-header">员工信息</li>
 
-            <li><a href="/personnel/employees/list">员工</a></li>
-            <li><a href="/personnel/employees/index">新增</a></li>
-            <li><a href="/personnel/employees/search">查询</a></li>
+        <li><a href="/personnel/employees/list">员工</a></li>
+        <li><a href="/personnel/employees/index">新增</a></li>
+        <li><a href="/personnel/employees/search">查询</a></li>
         </li>
 
         <li class="dropdown open">
@@ -19,12 +19,13 @@
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">业绩评价</li>
                 <li><a href="/personnel/evaluation/list">列表</a></li>
-                <#--<li><a href="/personnel/evaluation/index">新增</a></li>-->
+                <li><a href="/personnel/evaluation/index">新增</a></li>
 
-                <li class="dropdown-header">工资发放</li>
-                <li><a href="/personnel/salaries/list">列表</a></li>
-                <#--<li><a href="/personnel/salaries/index">新增</a></li>-->
-                <li><a href="/personnel/salaries/search">查询</a></li>
+
+                <li class="dropdown-header">背景信息</li>
+                <li><a href="/personnel/info/list">列表</a></li>
+                <li><a href="/personnel/info/index">新增</a></li>
+                <li><a href="/personnel/info/search">查询</a></li>
             </ul>
         </li>
 

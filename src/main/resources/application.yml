@@ -13,7 +13,7 @@ spring:
       enabled: true #开启热部署
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/personnel?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    url: jdbc:mysql://localhost:3306/person?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: mysql159612
   jpa:

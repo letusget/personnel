@@ -37,7 +37,7 @@
                 <div class="alert alert-dismissable alert-danger">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h4>
-                        操作订单错误<strong>${msg!""}</strong>
+                        操作错误，请检查<strong>${msg!""}</strong>
                     </h4>
                     <strong>操作异常</strong>
                     即将跳转页面:

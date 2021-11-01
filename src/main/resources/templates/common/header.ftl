@@ -7,6 +7,8 @@
     <#--这里要访问静态资源CSS 一定要注意，路径一定要正确，参考：https://blog.csdn.net/weixin_42336011/article/details/104533467
     https://www.jianshu.com/p/cbe6465b62ec -->
     <link rel="stylesheet" type="text/css" href="${path}/css/style.css">
+    <script type="text/javascript" src="${path}/js/time.js"></script>
+    <script type="text/javascript" src="${path}/js/newEmp.js"></script>
 
     <script>
         var t = null;
@@ -36,6 +38,7 @@
                 "秒";
             t = setTimeout(time, 1000); //设定定时器，循环运行
         }
-    </script>
 
+
+    </script>
 </head>

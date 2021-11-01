@@ -1,17 +1,18 @@
+<#--
 <html>
-<#--引入头文件-->
+&lt;#&ndash;引入头文件&ndash;&gt;
 <#include "../common/header.ftl">
 
 <body>
 <div id="wrapper" class="toggled">
-    <#--边栏sidebar-->
+    &lt;#&ndash;边栏sidebar&ndash;&gt;
     <#include "../common/nav.ftl">
-    <#--主要内容 content start-->
+    &lt;#&ndash;主要内容 content start&ndash;&gt;
     <div class="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-md-12 column">
-                    <#--主要内容 content start-->
+                    &lt;#&ndash;主要内容 content start&ndash;&gt;
                     <table class="table table-bordered table-condensed">
                         <thead>
                         <tr>
@@ -44,17 +45,17 @@
                                 <td>${salaries.salFinal}</td>
                                 <td>${salaries.salRemarks}</td>
                                 <td><a href="/personnel/salaries/index?empId=${salaries.empId}">修改</a></td>
-                                <#--<td><a href="/personnel/salaries/delete?empId=${salaries.empId}">删除</a></td>-->
+                                &lt;#&ndash;<td><a href="/personnel/salaries/delete?empId=${salaries.empId}">删除</a></td>&ndash;&gt;
                             </tr>
                         </#list>
                         </tbody>
                     </table>
-                    <#--主要内容 content end-->
+                    &lt;#&ndash;主要内容 content end&ndash;&gt;
                 </div>
-                <#--分页 start-->
+                &lt;#&ndash;分页 start&ndash;&gt;
                 <div class="col-md-12 column">
-                    <ul class="pagination pull-right">  <#--让分页居右-->
-                        <#--上一页处理 start-->
+                    <ul class="pagination pull-right">  &lt;#&ndash;让分页居右&ndash;&gt;
+                        &lt;#&ndash;上一页处理 start&ndash;&gt;
                         <#if currentPage lte 1>
                             <li>
                                 <a href="#">上一页</a>
@@ -64,10 +65,10 @@
                                 <a href="/personnel/salaries/list?page=${currentPage - 1}&size=${size}">上一页</a>
                             </li>
                         </#if>
-                        <#--上一页处理 end-->
-                        <#--代循环遍历(根据DB中查询出来的带分页查询所有订单列表)-->
+                        &lt;#&ndash;上一页处理 end&ndash;&gt;
+                        &lt;#&ndash;代循环遍历(根据DB中查询出来的带分页查询所有订单列表)&ndash;&gt;
                         <#list 1..salariesPageList.getTotalPages() as index>
-                        <#--当前页面置灰-->
+                        &lt;#&ndash;当前页面置灰&ndash;&gt;
                             <#if currentPage == index>
                                 <li class="disabled">
                                     <a href="/personnel/salaries/list?page=${index}&size=${size}">${index}</a>
@@ -78,8 +79,8 @@
                                 </li>
                             </#if>
                         </#list>
-                        <#--代循环遍历(根据DB中查询出来的带分页查询所有订单列表)-->
-                        <#-- 下一页处理 start-->
+                        &lt;#&ndash;代循环遍历(根据DB中查询出来的带分页查询所有订单列表)&ndash;&gt;
+                        &lt;#&ndash; 下一页处理 start&ndash;&gt;
                         <#if currentPage gte salariesPageList.getTotalPages()>
                             <li>
                                 <a href="#">下一页</a>
@@ -89,14 +90,14 @@
                                 <a href="/personnel/salaries/list?page=${currentPage + 1}&size=${size}">上一页</a>
                             </li>
                         </#if>
-                        <#-- 下一页处理 end-->
+                        &lt;#&ndash; 下一页处理 end&ndash;&gt;
                     </ul>
                 </div>
-                <#--分页 end-->
+                &lt;#&ndash;分页 end&ndash;&gt;
             </div>
         </div>
     </div>
-    <#--主要内容 content start-->
+    &lt;#&ndash;主要内容 content start&ndash;&gt;
 </div>
 </body>
-</html>
+</html>-->

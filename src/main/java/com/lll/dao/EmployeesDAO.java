@@ -17,5 +17,10 @@ public interface EmployeesDAO extends JpaRepository<Employees,String>
      */
     List<Employees> queryByEmpName(String empName);
 
+    /**
+     * 根据员工姓名 查询相关员工 (不考虑重名)
+     * @param empName
+     * @return
+     */
     Employees findByEmpName(String empName);
 }

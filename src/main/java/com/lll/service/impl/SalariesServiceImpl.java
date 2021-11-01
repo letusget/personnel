@@ -1,3 +1,4 @@
+/*
 package com.lll.service.impl;
 
 import com.lll.dao.SalariesDAO;
@@ -14,12 +15,14 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+*/
 /**
  * 工资表 Service层实现类
  * @author konvi
  * @version 1.0
  * @date 2021/9/1
- */
+ *//*
+
 @Service
 @Transactional
 public class SalariesServiceImpl implements SalariesService
@@ -27,43 +30,51 @@ public class SalariesServiceImpl implements SalariesService
     @Autowired
     private SalariesDAO salariesDAO;
 
-    /**
+    */
+/**
      * 根据员工编号查询员工工资信息
      * @param empId
      * @return
-     */
+     *//*
+
     @Override
     public Salaries findById(String empId)
     {
         return salariesDAO.findById(empId).orElse(null);
     }
 
-    /**
+    */
+/**
      * 分页查询所有员工工资信息
      * @param pageable
      * @return
-     */
+     *//*
+
     @Override
     public Page<Salaries> findAll(Pageable pageable)
     {
         return salariesDAO.findAll(pageable);
     }
 
-    /**
+    */
+/**
      * 新增员工工资信息
      * @param salaries
      * @return
-     */
+     *//*
+
     @Override
     public Salaries save(Salaries salaries)
     {
         return salariesDAO.save(salaries);
     }
 
-    /**
+    */
+/**
      * 根据员工编号删除员工工资信息
      * @param empId
-     */
+     *//*
+
     @Override
     public void delete(String empId)
     {
@@ -82,7 +93,8 @@ public class SalariesServiceImpl implements SalariesService
         }
     }
 
-    @Override
+    */
+/*@Override
     public SalariesDTO findByEmpName(String empName)
     {
         // 根据员工姓名查询 员工信息
@@ -96,5 +108,7 @@ public class SalariesServiceImpl implements SalariesService
         SalariesDTO  salariesDTO = new SalariesDTO();
         BeanUtils.copyProperties(salaries, salariesDTO);
         return salariesDTO;
-    }
+    }*//*
+
 }
+*/

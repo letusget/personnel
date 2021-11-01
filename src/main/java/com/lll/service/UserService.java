@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 public interface UserService
 {
-    boolean verifyUser(User user);
+    public boolean verifyUser(User user);
 
 }
 

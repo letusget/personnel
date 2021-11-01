@@ -1,22 +1,23 @@
+<#--
 <html>
 
-<#-- (1) 引入头文件 -->
+&lt;#&ndash; (1) 引入头文件 &ndash;&gt;
 <#include  "../common/header.ftl">
 
 <body>
-<!-- (2)复制  -->
-<!-- 自己写的div start -->
+<!-- (2)复制  &ndash;&gt;
+<!-- 自己写的div start &ndash;&gt;
 <div id="wrapper" class="toggled">
 
-    <#-- (3)边栏sidebar-->
+    &lt;#&ndash; (3)边栏sidebar&ndash;&gt;
     <#include  "../common/nav.ftl">
-    <!-- (4) 主要内容content start -->
+    <!-- (4) 主要内容content start &ndash;&gt;
     <div class="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
-                <#--显示系统时间-->
+                &lt;#&ndash;显示系统时间&ndash;&gt;
                 <div class="showTime">当前时间：2021年8月17-12时35分16秒</div>
-                <!-- 表格内容 start  -->
+                <!-- 表格内容 start  &ndash;&gt;
                 <div class="col-md-12 column">
                     <table class="table table-bordered table-condensed">
                         <thead>
@@ -50,17 +51,18 @@
                         </tr>
                         </tbody>
 
-                        <#--主要内容content end -->
+                        &lt;#&ndash;主要内容content end &ndash;&gt;
                     </table>
                 </div>
-                <!-- 表格内容 end  -->
+                <!-- 表格内容 end  &ndash;&gt;
 
 
             </div>
         </div>
     </div>
-    <!-- (4) 主要内容content end -->
+    <!-- (4) 主要内容content end &ndash;&gt;
 </div>
-<!-- (2)自己写的div end -->
+<!-- (2)自己写的div end &ndash;&gt;
 </body>
 </html>
+-->

@@ -27,11 +27,9 @@
                         <th>员工性别</th>
                         <th>员工邮箱</th>
                         <th>员工手机号码</th>
-                       <#-- <th>员工部门编号</th>-->
+                        <#-- <th>员工部门编号</th>-->
                         <th>员工部门</th>
                         <th>员工身份证号码</th>
-                        <th>员工入职时间</th>
-                        <th>员工婚姻状态</th>
                         <th>员工备注</th>
 
                         <th colspan="2">操作</th>
@@ -56,8 +54,6 @@
                                     <#--<td>${employees.depName}</td>-->
                                     <td>${employees.empIdCard}</td>
 
-                                    <td>${employees.empEntry}</td>
-                                    <td>${employees.getEmpMaritalEnum().message}</td>
                                     <td>${employees.empRemarks}</td>
 
                                     <td><a href="/personnel/employees/index?empId=${employees.empId}">修改</a></td>
@@ -111,7 +107,7 @@
                             </li>
                         <#else>
                             <li>
-                                <a href="/personnel/employees/list?page=${currentPage + 1}&size=${pageSize}">下一页</a>
+                                <a href="/personnel/employees/list?page=${currentPage + 1}&size=${pageSize}">上一页</a>
                             </li>
                         </#if>
                         <!-- 下一页处理  end-->

@@ -1,3 +1,4 @@
+/*
 package com.lll.controller;
 
 
@@ -26,13 +27,15 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 
+*/
 /**
  * 工资表 Controller层
  * http://192.168.1.3/:8080/personnel/salaries/list
  * @author konvi
  * @version 1.0
  * @date 2021/9/3
- */
+ *//*
+
 @Slf4j
 @Controller
 @RequestMapping("/salaries")
@@ -41,13 +44,15 @@ public class SalariesController
     @Autowired
     private SalariesService salariesService;
 
-    /**
+    */
+/**
      * 分页查询工资表
      * @param page 默认为第一页
      * @param size 默认显示10条数据
      * @param map
      * @return
-     */
+     *//*
+
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page",defaultValue ="1") Integer page, @RequestParam(value = "size",defaultValue = "10")Integer size, Map<String,Object> map)
     {
@@ -67,12 +72,14 @@ public class SalariesController
         return new ModelAndView("salaries/list",map);
     }
 
-    /**
+    */
+/**
      * 弹出 工资表修改页面
      * @param empId
      * @param map
      * @return
-     */
+     *//*
+
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "empId",required = false)String empId,Map<String,Object>map)
     {
@@ -85,13 +92,15 @@ public class SalariesController
     }
 
 
-    /**
+    */
+/**
      * 保存/更新 工资表信息
      * @param salariesForm
      * @param bindingResult
      * @param request
      * @return
-     */
+     *//*
+
     @PostMapping("/save")
     public ModelAndView save(@Valid SalariesForm salariesForm, BindingResult bindingResult, HttpServletRequest request)
     {
@@ -141,12 +150,14 @@ public class SalariesController
         return new ModelAndView("common/success");
     }
 
-    /**
+    */
+/**
      * 删除 工资表信息
      * @param empId
      * @param map
      * @return
-     */
+     *//*
+
     @GetMapping("/delete")
     public ModelAndView delete(@RequestParam("empId")String empId,Map<String,Object>map)
     {
@@ -191,3 +202,4 @@ public class SalariesController
         return new ModelAndView("salaries/result", map);
     }
 }
+*/
