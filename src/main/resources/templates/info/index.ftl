@@ -14,10 +14,11 @@
 
             }
 
-            var patt=/^[\u4E00-\u9FA5]{2,10}(·[\u4E00-\u9FA5]{2,10}){0,2}$/;
+            var patt=/^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
             if (!patt.test(empNameText))
             {
-                alert("姓名输入不合规范，请输入真实姓名！");
+                //this.style.backgroundColor="red";
+                alert(empNameText+" -> 此姓名输入不合规范，请输入真实姓名！");
             }
         }
 
@@ -46,6 +47,7 @@
             var empEntry=document.getElementById("empEntry").value;
             if (!empEntry)
             {
+                this.style.backgroundColor="red";
                 alert("入职时间不能为空");
 
             }
@@ -71,6 +73,11 @@
                 alert("婚姻状态不能为空");
 
             }
+
+            var empPlace=document.getElementById("empPlace");
+            var empPlaceText=empPlace.value;
+
+
         }
 
         function onsubmitFun()
@@ -137,7 +144,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>籍贯</label>
-                                    <input name="infPlace" type="number" id="empPlace" onclick="onClickPlace()" class="form-control" value="${(information.infPlace)!''}"/>
+                                    <input name="infPlace" type="text" id="empPlace" onclick="onClickPlace()" class="form-control" value="${(information.infPlace)!''}"/>
                                 </div>
 
                                 <div class="form-group">

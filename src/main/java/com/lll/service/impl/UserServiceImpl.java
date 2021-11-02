@@ -27,4 +27,13 @@ public class UserServiceImpl implements UserService
 
         return userList.size()>0;
     }
+
+    @Override
+    public Integer getUserFlag(String userName)
+    {
+        User user=userDAO.findByUsername(userName);
+
+
+        return user.getUserFlag();
+    }
 }

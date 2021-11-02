@@ -8,5 +8,7 @@ public interface UserService
 {
     public boolean verifyUser(User user);
 
+    public Integer getUserFlag(String userName);
+
 }
 

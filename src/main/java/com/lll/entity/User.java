@@ -1,5 +1,6 @@
 package com.lll.entity;
 
+import com.lll.enums.UserFlagEnum;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -24,10 +25,11 @@ public class User implements Serializable
     private String id;
 
     /**
-     * 用户标识
+     * 用户标识,表明不同登录身份
      */
-    @Column(name = "user_id")
-    private String userid;
+    @Column(name = "user_flag")
+    //private String userFlag;
+    private Integer userFlag= UserFlagEnum.Employee.getCode();
 
     /**
      * 用户名

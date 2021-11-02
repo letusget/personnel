@@ -37,25 +37,49 @@ public class UserController
     }
 
     @PostMapping("/loginVerify")
-    public String loginVerify(String username, String password, HttpSession session)
+    public String loginVerify(String username, String password, Integer flag, HttpSession session)
     {
         User user =new User();
         user.setUsername(username);
         user.setPassword(password);
+        //user.setUserFlag(flag);
+
 
         //System.out.println("test");
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
+        System.out.println(user.getUserFlag());
 
-        boolean verify= userService. verifyUser(user);
+        boolean verify= userService.verifyUser(user);
+        Integer userFlag= userService.getUserFlag(user.getUsername());
         //boolean verify=true;
 
         if (verify)
         {
             session.setAttribute(WebSecurityConfig.SESSION_KEY,username);
-            return "common/index";
+            if (userFlag==0)
+            {
+                return "common/index";
+            }
+            else if(userFlag==1)
+            {
+                //TODO 进入经理管理页面，使用残缺的侧边栏，跳转页面增加controller，相同的链接，可是显示不同
+                return "common/indexManager";
+            }
+            else if(userFlag==2)
+            {
+                return "common/indexEmployee";
+            }
+            else
+            {
+                return "common/error";
+            }
+
         }
         else
         {
-            return "redirect:common/login";
+            return "common/login";
         }
 
     }

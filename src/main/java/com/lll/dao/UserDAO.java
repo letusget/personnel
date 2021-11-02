@@ -17,9 +17,11 @@ public interface UserDAO extends PagingAndSortingRepository<User, Long>
 //public interface UserDAO extends CrudRepository<User,Long>
 {
     /**
-     * 验证用户用户
+     * 验证用户
      */
     List<User> findByUsernameAndPassword(String name, String password);
+
+    User findByUsername(String name);
 
 }
 

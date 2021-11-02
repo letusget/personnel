@@ -24,5 +24,9 @@ public class UserDAOTest
         List<User> userList = userDAO.findByUsernameAndPassword("root","123456");
         System.out.println("target:");
         System.out.println(userList);
+
+        User user=userDAO.findByUsername("root");
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
     }
 }

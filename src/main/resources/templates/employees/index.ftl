@@ -36,14 +36,9 @@
     }
 
     function onClickSex() {
-
-
-    }
-
-    function onClickEmail()
-    {
-        var empName = document.getElementById("empName");
+        var empName=document.getElementById("empName");
         var empNameText=empName.value;
+
         if (!empName)
         {
             alert("姓名不能为空");
@@ -54,12 +49,22 @@
         {
             alert(empNameText+" -> 此姓名输入不合规范，请输入真实姓名！");
         }
+    }
 
+    function onClickEmail()
+    {
+        var empName = document.getElementById("empName");
+        var empNameText=empName.value;
+
+        //验证数字
+        var patt=/^\d{n}$/;
         var empSex=document.getElementById("empSex").value;
         if (!empSex)
         {
             alert("性别不能为空！");
         }
+
+
 
     }
 
