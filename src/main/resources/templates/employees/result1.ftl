@@ -9,7 +9,7 @@
 <div id="wrapper" class="toggled">
 
     <#-- (3)边栏sidebar-->
-    <#include  "../common/nav.ftl">
+    <#include  "../common/navManager.ftl">
     <!-- (4) 主要内容content start -->
     <div class="page-content-wrapper">
         <div class="container-fluid">
@@ -38,29 +38,29 @@
                         </thead>
 
                         <tbody>
-                                <tr>
-                                    <#--<td>${employees_index + 1}</td>-->
-                                    <td>${employees.empId}</td>
-                                    <#--<td>${employees.empId}</td>-->
-                                    <td><img height="100" width="100" src="${employees.empPhoto}" alt="该图片不存在!"></td>
+                        <tr>
+                            <#--<td>${employees_index + 1}</td>-->
+                            <td>${employees.empId}</td>
+                            <#--<td>${employees.empId}</td>-->
+                            <td><img height="100" width="100" src="${employees.empPhoto}" alt="该图片不存在!"></td>
 
-                                    <td>${employees.empName}</td>
-                                    <td>${employees.getEmpSexEnum().message}</td>
-                                    <td>${employees.empEmail}</td>
-                                    <td>${employees.empPhone}</td>
-                                    <#--<td>${employees.depId}</td>-->
-                                    <td>${employees.depName}</td>
+                            <td>${employees.empName}</td>
+                            <td>${employees.getEmpSexEnum().message}</td>
+                            <td>${employees.empEmail}</td>
+                            <td>${employees.empPhone}</td>
+                            <#--<td>${employees.depId}</td>-->
+                            <td>${employees.depName}</td>
 
-                                    <#--<td>${employees.depName}</td>-->
-                                    <td>${employees.empIdCard}</td>
+                            <#--<td>${employees.depName}</td>-->
+                            <td>${employees.empIdCard}</td>
 
-                                   <#-- <td>${employees.empEntry}</td>
-                                    <td>${employees.getEmpMaritalEnum().message}</td>-->
-                                    <td>${employees.empRemarks}</td>
+                            <#--<td>${employees.empEntry}</td>
+                            <td>${employees.getEmpMaritalEnum().message}</td>-->
+                            <td>${employees.empRemarks}</td>
 
-                                    <td><a href="/personnel/employees/index?empId=${employees.empId}">修改</a></td>
-                                    <td><a href="/personnel/employees/delete?empId=${employees.empId}">删除</a></td>
-                                </tr>
+                            <td><a href="/personnel/employees/index1?empId=${employees.empId}">修改</a></td>
+                            <td><a href="/personnel/employees/delete1?empId=${employees.empId}">删除</a></td>
+                        </tr>
                         </tbody>
 
                         <#--主要内容content end -->

@@ -1,7 +1,7 @@
 package com.lll.form;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lll.enums.EmpMaritalEnum;
+
 import com.lll.enums.EmpSexEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
@@ -49,7 +49,7 @@ public class EmployeeForm
     /**
      * 员工部门编号
      */
-    //private String depId;
+    private String depId;
 
     /**
      * 员工部门名称
@@ -67,7 +67,7 @@ public class EmployeeForm
      * 1 为已婚
      * 0 为未婚
      */
-    private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode();
+   // private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode();
 
     /**
      * 备注
@@ -89,11 +89,11 @@ public class EmployeeForm
 
     /**
      * 获取婚姻状态的枚举类
-     */
+   /*  *//*
     @JsonIgnore
     public EmpMaritalEnum getEmpMaritalEnum()
     {
         return EnumUtil.getByCode(empMarital,EmpMaritalEnum.class);
     }
-
+*/
 }

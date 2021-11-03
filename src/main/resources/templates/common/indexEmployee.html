@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>公司职员</title>
+    <style type="text/css">
+        .box{
+            position: absolute;
+            left:50%;
+            top:50%;
+            transform: translate(-50%, -50%);
+        }
+
+        body
+        {
+            /*background="https://tva3.sinaimg.cn/large/006x3t5Xgy1guaf9qalkfj60zk0k0n4302.jpg"*/
+            background-image: url("https://tva3.sinaimg.cn/large/006x3t5Xly1gw1rhukapcj31hc0u0ww5.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+
+        }
+
+    </style>
 </head>
 <body>
-<h1>公司职员登录</h1>
+<!--<h1>公司职员登录</h1>-->
+<div class="box">
+    <h1 th:text="登录成功"> 欢迎 您登录</h1>
+    <a href="/personnel/employees/list2"><strong>进入系统</strong></a>
+    <br>
+    <br>
+    <a href="/personnel/logout"><strong>重新登录</strong></a>
+</div>
 </body>
 </html>

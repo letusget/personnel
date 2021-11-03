@@ -129,11 +129,12 @@
 
                                     <select name="infPolitical" type="text" id="empPolitical"
                                             onclick="onclickPolitical()" class="form-control" value="${(information.infPolitical)!''}">
-                                        <option>0为，1为，2，3为，请在下面选择</option>
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        <option style="display: none">请在下面选择目前的政治面貌</option>
+                                        <option value="0">共青团员</option>
+                                        <option value="1">党员</option>
+                                        <option value="2">无党派人士</option>
+                                        <option value="3">其他党派人士</option>
+                                        <option value="4">群众</option>
                                     </select>
 
                                     <#--<input name="infPolitical" type="text" id="empPolitical" onclick="onclickPolitical()" class="form-control" value="${(information.infPolitical)!''}"/>-->
@@ -152,11 +153,11 @@
 
                                     <select class="form-control" id="empMarry" onclick="onClickMarry()" name="empMarital" placeholder="0为未婚，1为已婚"
                                             value="${(information.infMarital)!''}">
-                                        <option>0为未婚，1为已婚，2离异，3为丧偶，请在下面选择</option>
-                                        <option>0</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        <option style="display: none">请在下面选择目前的婚姻状态</option>
+                                        <option value="0">未婚</option>
+                                        <option value="1">已婚</option>
+                                        <option value="2">离异</option>
+                                        <option value="3">丧偶</option>
                                     </select>
 
                                     <#--<input type="text" class="form-control" id="empMarry" onclick="onClickMarry()" name="empMarital" placeholder="0为未婚，1为已婚"

@@ -46,10 +46,10 @@ public class UserController
 
 
         //System.out.println("test");
-        System.out.println(user.getId());
-        System.out.println(user.getUsername());
-        System.out.println(user.getPassword());
-        System.out.println(user.getUserFlag());
+        //System.out.println(user.getId());
+        //System.out.println(user.getUsername());
+        //System.out.println(user.getPassword());
+        //System.out.println(user.getUserFlag());
 
         boolean verify= userService.verifyUser(user);
         Integer userFlag= userService.getUserFlag(user.getUsername());
@@ -64,7 +64,7 @@ public class UserController
             }
             else if(userFlag==1)
             {
-                //TODO 进入经理管理页面，使用残缺的侧边栏，跳转页面增加controller，相同的链接，可是显示不同
+
                 return "common/indexManager";
             }
             else if(userFlag==2)

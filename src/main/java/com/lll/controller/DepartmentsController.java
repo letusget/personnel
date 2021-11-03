@@ -49,6 +49,25 @@ public class DepartmentsController {
 
     return new ModelAndView("departments/list", map);
   }
+  @GetMapping("/list1")
+  public ModelAndView list1(
+          @RequestParam(value = "page", defaultValue = "1") Integer page,
+          @RequestParam(value = "size", defaultValue = "10") Integer size,
+          Map<String, Object> map) {
+    PageRequest pageRequest = PageRequest.of(page - 1, size);
+
+    // 分页查询部门列表
+    Page<Departments> departmentsPageList = departmentsService.findAll(pageRequest);
+
+    // 设置部门分页列表
+    map.put("departmentsPageList", departmentsPageList);
+    // 设置当前页
+    map.put("currentPage", page);
+    // 设置每页显示多少条数据
+    map.put("pageSize", size);
+
+    return new ModelAndView("departments/list1", map);
+  }
 
   /** 弹出修改页面 */
   @GetMapping("/index")
@@ -59,6 +78,15 @@ public class DepartmentsController {
       map.put("departments", departments);
     }
     return new ModelAndView("departments/index", map);
+  }
+  @GetMapping("/index1")
+  public ModelAndView index1(
+          @RequestParam(value = "depId", required = false) String depId, Map<String, Object> map) {
+    if (depId != null) {
+      Departments departments = departmentsService.findById(depId);
+      map.put("departments", departments);
+    }
+    return new ModelAndView("departments/index1", map);
   }
 
   /** 新增 */
@@ -90,6 +118,34 @@ public class DepartmentsController {
     session.setAttribute("url", request.getContextPath() + "/departments/list");
     return new ModelAndView("common/success");
   }
+  @PostMapping("/save1")
+  public ModelAndView save1(
+          @Valid DepartmentsForm form, BindingResult bindingResult, HttpServletRequest request) {
+    HttpSession session = request.getSession();
+    if (bindingResult.hasErrors()) {
+      session.setAttribute("msg", bindingResult.getFieldError().getDefaultMessage());
+      session.setAttribute("url", request.getContextPath() + "/departments/index1");
+      return new ModelAndView("common/error");
+    }
+
+    Departments departments = new Departments();
+    try {
+      if (StringUtils.hasText(form.getDepId())) {
+        departments = departmentsService.findById(form.getDepId());
+      } else {
+        form.setDepId(KeyUtil.genUniqueKey());
+      }
+      BeanUtils.copyProperties(form, departments);
+      departmentsService.save(departments); // 保存/更新
+    } catch (PersonnelException e) {
+      session.setAttribute("msg", e.getMessage());
+      session.setAttribute("url", request.getContextPath() + "/departments/index1");
+      return new ModelAndView("common/error");
+    }
+    session.setAttribute("msg", ResultEnum.EMPLOYEE_DEPARTMENTS_SUCCESS.getMessage());
+    session.setAttribute("url", request.getContextPath() + "/departments/list1");
+    return new ModelAndView("common/success");
+  }
 
   /**
    * 删除
@@ -110,6 +166,21 @@ public class DepartmentsController {
       return new ModelAndView("common/error",map);
     }
     map.put("url","/personnel/departments/list");
+    return new ModelAndView("common/success",map);
+  }
+  @GetMapping("/delete1")
+  public ModelAndView delete1(@RequestParam("depId")String depId,Map<String,Object>map)
+  {
+    try
+    {
+      departmentsService.delete(depId);
+    } catch (PersonnelException e)
+    {
+      map.put("msg",e.getMessage());
+      map.put("url","/personnel/departments/list1");
+      return new ModelAndView("common/error",map);
+    }
+    map.put("url","/personnel/departments/list1");
     return new ModelAndView("common/success",map);
   }
 

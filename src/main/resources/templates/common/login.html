@@ -39,7 +39,11 @@
         {
             var userName=document.getElementById("username").value;
             var userPassWord=document.getElementById("password").value;
-            var userFlag=document.getElementById("userFlag");
+            var userFlag=document.getElementById("userFlag").value;
+
+            var userFlagChoice=document.getElementById("userFlag");
+            //alert(userFlag);
+
             if(!userName||!userPassWord||!userFlag)
             {
                 alert("请检查输入信息，不能含有空字段！");
@@ -75,10 +79,10 @@
                     <div >
                         <!--<input type="role" id="role"  name="role" maxlength="16"/>-->
                         <select type="userFlag" id="userFlag"  name="userFlag" maxlength="16">
-                            <option>0为超级管理员，1为部门经理，2为公司职员</option>
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
+                            <option style="display: none">请选择登陆角色</option>
+                            <option value="0">超级管理员</option>
+                            <option value="1">主管经理</option>
+                            <option value="2">公司职员</option>
                         </select>
                     </div>
                 </li>

@@ -53,8 +53,12 @@
 
     function onClickEmail()
     {
-        var empName = document.getElementById("empName");
+        /*var empSex = document.getElementById("empName");
         var empNameText=empName.value;
+        if(!empNameText)
+        {
+
+        }*/
 
         //验证数字
         var patt=/^\d{n}$/;
@@ -62,6 +66,11 @@
         if (!empSex)
         {
             alert("性别不能为空！");
+        }
+
+        if (!patt.test(empSex))
+        {
+            alert(empSex+" -> 性别选择不合规范，请重新选择！");
         }
 
 
@@ -194,9 +203,9 @@
 
                                 <select class="form-control" id="empSex" onclick="onClickSex()" name="empSex" placeholder="0 为女性，1 为男性"
                                         value="${(employees.empSex)!''}">
-                                    <option>1为男性，0为女性,请在下面选择</option>
-                                    <option>1</option>
-                                    <option>0</option>
+                                    <option style="display: none">请在下面选择性别</option>
+                                    <option value="1">男</option>
+                                    <option value="0">女</option>
                                 </select>
 
                                 <#--<input type="text" class="form-control" id="empSex" onclick="onClickSex()" name="empSex" placeholder="0 为女性，1 为男性"

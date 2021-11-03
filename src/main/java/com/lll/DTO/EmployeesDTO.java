@@ -2,7 +2,7 @@ package com.lll.DTO;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lll.entity.Employees;
-import com.lll.enums.EmpMaritalEnum;
+
 import com.lll.enums.EmpSexEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;

@@ -2,7 +2,6 @@ package com.lll.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.lll.enums.EmpMaritalEnum;
 import com.lll.enums.EmpSexEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
@@ -72,7 +71,7 @@ public class Employees implements Serializable
      * 员工部门编号
      * varchar 32
      */
-    //private String depId;
+    private String depId;
 
     /**
      * 员工部门名称
@@ -89,10 +88,10 @@ public class Employees implements Serializable
     /**
      * 员工入职时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    /*@JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp  //这样入职时间就不会为空了
-    private Date empEntry;
+    private Date empEntry;*/
 
     /**
      *员工婚姻状况
@@ -100,7 +99,7 @@ public class Employees implements Serializable
      * 0 为未婚
      */
     //private Integer empMarital;
-    private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode(); //默认未婚
+    //private Integer empMarital= EmpMaritalEnum.UNMARRIED.getCode(); //默认未婚
 
     /**
      * 备注
@@ -119,10 +118,10 @@ public class Employees implements Serializable
     /**
      * 获取婚姻状态的枚举类
      */
-    @JsonIgnore
+    /*@JsonIgnore
     public EmpMaritalEnum getEmpMaritalEnum()
     {
         return EnumUtil.getByCode(empMarital,EmpMaritalEnum.class);
-    }
+    }*/
 
 }
