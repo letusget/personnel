@@ -74,27 +74,48 @@ public class EvaluationController
         return new ModelAndView("evaluation/list1",map);
 
     }
+    @GetMapping("/list2")
+    public ModelAndView list2(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                             @RequestParam(value = "size",defaultValue = "10") Integer size,
+                             Map<String,Object> map)
+    {
+        PageRequest pageRequest=PageRequest.of(page-1,size);
+
+        //分页查询员工列表
+        Page<Evaluation> evaluationPageList=evaluationService.findAll(pageRequest);
+
+        //设置员工分页列表
+        map.put("evaluationPageList",evaluationPageList);
+        //设置当前页
+        map.put("currentPage",page);
+        //设置每页显示多少条数据
+        map.put("pageSize",size);
+
+        return new ModelAndView("evaluation/list2",map);
+
+    }
+
 
 
     /**
      * 弹出修改页面
      */
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value = "empId", required = false) String empId, Map<String, Object> map)
+    public ModelAndView index(@RequestParam(value = "evaId", required = false) String evaId, Map<String, Object> map)
     {
-        if (empId != null)
+        if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findById(empId);
+            Evaluation evaluation = evaluationService.findById(evaId);
             map.put("evaluation", evaluation);
         }
         return new ModelAndView("evaluation/index", map);
     }
     @GetMapping("/index1")
-    public ModelAndView index1(@RequestParam(value = "empId", required = false) String empId, Map<String, Object> map)
+    public ModelAndView index1(@RequestParam(value = "evaId", required = false) String evaId, Map<String, Object> map)
     {
-        if (empId != null)
+        if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findById(empId);
+            Evaluation evaluation = evaluationService.findById(evaId);
             map.put("evaluation", evaluation);
         }
         return new ModelAndView("evaluation/index1", map);
@@ -117,12 +138,12 @@ public class EvaluationController
         Evaluation evaluation = new Evaluation();
         try
         {
-            if (StringUtils.hasText(form.getEmpId()))
+            if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findById(form.getEmpId());
+                evaluation = evaluationService.findById(form.getEvaId());
             } else
             {
-                form.setEmpId(KeyUtil.genUniqueKey());
+                form.setEvaId(KeyUtil.genUniqueKey());
             }
             BeanUtils.copyProperties(form,evaluation);
             evaluationService.save(evaluation);   // 保存/更新
@@ -152,12 +173,12 @@ public class EvaluationController
         Evaluation evaluation = new Evaluation();
         try
         {
-            if (StringUtils.hasText(form.getEmpId()))
+            if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findById(form.getEmpId());
+                evaluation = evaluationService.findById(form.getEvaId());
             } else
             {
-                form.setEmpId(KeyUtil.genUniqueKey());
+                form.setEvaId(KeyUtil.genUniqueKey());
             }
             BeanUtils.copyProperties(form,evaluation);
             evaluationService.save(evaluation);   // 保存/更新
@@ -174,11 +195,11 @@ public class EvaluationController
 
     /** 删除 */
     @GetMapping("/delete")
-    public ModelAndView delete(@RequestParam("empId")String empId,Map<String,Object>map)
+    public ModelAndView delete(@RequestParam("evaId")String evaId,Map<String,Object>map)
     {
         try
         {
-            evaluationService.delete(empId);
+            evaluationService.delete(evaId);
         } catch (PersonnelException e)
         {
             map.put("msg",e.getMessage());
@@ -190,11 +211,11 @@ public class EvaluationController
         return new ModelAndView("common/success",map);
     }
     @GetMapping("/delete1")
-    public ModelAndView delete1(@RequestParam("empId")String empId,Map<String,Object>map)
+    public ModelAndView delete1(@RequestParam("evaId")String evaId,Map<String,Object>map)
     {
         try
         {
-            evaluationService.delete(empId);
+            evaluationService.delete(evaId);
         } catch (PersonnelException e)
         {
             map.put("msg",e.getMessage());

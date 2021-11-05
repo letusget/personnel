@@ -5,7 +5,7 @@
 <body>
 <div id="wrapper" class="toggled">
     <#--边栏sidebar-->
-    <#include "../common/nav.ftl">
+    <#include "../common/navEmployee.ftl">
     <#--主要内容 content start-->
     <div class="page-content-wrapper">
         <div class="container-fluid">
@@ -42,17 +42,18 @@
                                 <td>${info.getInfMaritalEnum().message}</td>
                                 <td>${info.infRemarks}</td>
                                 <td><a href="/personnel/info/index?infId=${info.infId}">修改</a></td>
-                                <td><a href="/personnel/info/delete?infId=${info.infId}">删除</a></td>
+                                <#--<td><a href="/personnel/info/delete?infId=${info.infId}">删除</a></td>-->
                             </tr>
                         </#list>
                         </tbody>
                     </table>
                     <#--主要内容 content end-->
                 </div>
-                <#--分页 start-->
+<#--
+                &lt;#&ndash;分页 start&ndash;&gt;
                 <div class="col-md-12 column">
-                    <ul class="pagination pull-right">  <#--让分页居右-->
-                        <#--上一页处理 start-->
+                    <ul class="pagination pull-right">  &lt;#&ndash;让分页居右&ndash;&gt;
+                        &lt;#&ndash;上一页处理 start&ndash;&gt;
                         <#if currentPage lte 1>
                             <li>
                                 <a href="#">上一页</a>
@@ -62,10 +63,10 @@
                                 <a href="/personnel/info/list?page=${currentPage - 1}&size=${size}">下一页</a>
                             </li>
                         </#if>
-                        <#--上一页处理 end-->
-                        <#--代循环遍历(根据DB中查询出来的带分页查询所有订单列表)-->
+                        &lt;#&ndash;上一页处理 end&ndash;&gt;
+                        &lt;#&ndash;代循环遍历(根据DB中查询出来的带分页查询所有订单列表)&ndash;&gt;
                         <#list 1..infoPageList.getTotalPages() as index>
-                        <#--当前页面置灰-->
+                        &lt;#&ndash;当前页面置灰&ndash;&gt;
                             <#if currentPage == index>
                                 <li class="disabled">
                                     <a href="/personnel/info/list?page=${index}&size=${size}">${index}</a>
@@ -76,8 +77,8 @@
                                 </li>
                             </#if>
                         </#list>
-                        <#--代循环遍历(根据DB中查询出来的带分页查询所有订单列表)-->
-                        <#-- 下一页处理 start-->
+                        &lt;#&ndash;代循环遍历(根据DB中查询出来的带分页查询所有订单列表)&ndash;&gt;
+                        &lt;#&ndash; 下一页处理 start&ndash;&gt;
                         <#if currentPage gte infoPageList.getTotalPages()>
                             <li>
                                 <a href="#">下一页</a>
@@ -87,10 +88,11 @@
                                 <a href="/personnel/info/list?page=${currentPage + 1}&size=${size}">上一页</a>
                             </li>
                         </#if>
-                        <#-- 下一页处理 end-->
+                        &lt;#&ndash; 下一页处理 end&ndash;&gt;
                     </ul>
                 </div>
-                <#--分页 end-->
+                &lt;#&ndash;分页 end&ndash;&gt;
+               -->
             </div>
         </div>
     </div>

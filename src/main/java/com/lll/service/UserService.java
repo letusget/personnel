@@ -6,9 +6,12 @@ import org.springframework.stereotype.Service;
 
 public interface UserService
 {
-    public boolean verifyUser(User user);
+    //识别登录用户
+    boolean verifyUser(User user);
 
-    public Integer getUserFlag(String userName);
+    Integer getUserFlag(String userName);
+
+
 
 }
 

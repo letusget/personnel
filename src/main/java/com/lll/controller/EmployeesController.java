@@ -97,6 +97,7 @@ public class EmployeesController {
 
         //分页查询员工列表
         Page<Employees> employeesPageList = employeesService.findAll(pageRequest);
+        List<Employees> employeesList=employeesService.findUpAll("夏海藻");
 
         //设置员工分页列表
         map.put("employeesPageList", employeesPageList);
@@ -149,6 +150,25 @@ public class EmployeesController {
 
         /*return new ModelAndView("employees/index",map);*/
         return new ModelAndView("employees/index1", map);
+
+    }
+    @GetMapping("/index2")
+    public ModelAndView index2(@RequestParam(value = "empId", required = false) String empId, Map<String, Object> map) {
+        if (empId != null)
+        //if (StringUtils.hasText(empId))
+        {
+            //根据员工id 查询员工信息
+            Employees employees = employeesService.findByEmpId(empId);
+            //设置员工信息
+            map.put("employees", employees);
+        }
+        //查询部门信息
+
+        List<Departments> departmentsList = departmentsService.findAll();
+        map.put("departmentsList", departmentsList);
+
+        /*return new ModelAndView("employees/index",map);*/
+        return new ModelAndView("employees/index2", map);
 
     }
 
@@ -215,6 +235,37 @@ public class EmployeesController {
         }
         session.setAttribute("msg", ResultEnum.EMPLOYEE_SUCCESS.getMessage());
         session.setAttribute("url", request.getContextPath() + "/employees/list1");
+        return new ModelAndView("common/success");
+
+    }
+    @PostMapping("/save2")
+    public ModelAndView save2(@Valid EmployeeForm form, BindingResult bindingResult, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (bindingResult.hasErrors()) {
+            session.setAttribute("msg", bindingResult.getFieldError().getDefaultMessage());
+            session.setAttribute("url", request.getContextPath() + "/employees/index2");
+            return new ModelAndView("common/error");
+        }
+        Employees employees = new Employees();
+        try {
+            //如果empId 有值，则说明是修改
+            if (StringUtils.hasText(form.getEmpId())) {
+                employees = employeesService.findByEmpId(form.getEmpId());
+            } else
+            {
+                form.setEmpId(KeyUtil.genUniqueKey());
+            }
+            //将form 中的对象 copy 给employees
+            BeanUtils.copyProperties(form, employees);
+            //保存 员工信息
+            employeesService.save(employees);
+        } catch (PersonnelException e) {
+            session.setAttribute("msg", e.getMessage());
+            session.setAttribute("url", request.getContextPath() + "/employees/index2");
+            return new ModelAndView("common/error");
+        }
+        session.setAttribute("msg", ResultEnum.EMPLOYEE_SUCCESS.getMessage());
+        session.setAttribute("url", request.getContextPath() + "/employees/list2");
         return new ModelAndView("common/success");
 
     }

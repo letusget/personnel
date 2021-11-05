@@ -17,12 +17,13 @@
                 <#--显示系统时间-->
                 <div class="showTime">当前时间：2021年8月17-12时35分16秒</div>
                 <!-- 表格内容 start  -->
+                <h3>基本信息</h3>
                 <div class="col-md-12 column">
                     <table class="table table-bordered table-condensed">
                         <thead>
-                        <th>序号</th>
+
                         <th>员工ID</th>
-                        <th>员工照片</th>
+                        <th>员工出勤</th>
                         <th>员工姓名</th>
                         <th>员工性别</th>
                         <th>员工邮箱</th>
@@ -32,35 +33,28 @@
                         <th>员工身份证号码</th>
                         <th>员工备注</th>
 
-                        <th colspan="2">操作</th>
+                       <#-- <th colspan="2">操作</th>-->
                         </thead>
 
                         <tbody>
-                        <#if employeesPageList.content??>
-                            <#list employeesPageList.content as employees>
+
                                 <tr>
-                                    <td>${employees_index + 1}</td>
-                                    <td>${employees.empId}</td>
+                                    <td>${employeesDTO.empId}</td>
                                     <#--<td>${employees.empId}</td>-->
-                                    <td><img height="100" width="100" src="${employees.empPhoto}" alt="该图片不存在!"></td>
+                                    <td><img height="100" width="100" src="${employeesDTO.empPhoto}" alt="该图片不存在!"></td>
 
-                                    <td>${employees.empName}</td>
-                                    <td>${employees.getEmpSexEnum().message}</td>
-                                    <td>${employees.empEmail}</td>
-                                    <td>${employees.empPhone}</td>
-                                    <#--<td>${employees.depId}</td>-->
-                                    <td>${employees.depName}</td>
+                                    <td>${employeesDTO.empName}</td>
+                                    <td>${employeesDTO.getEmpSexEnum().message}</td>
+                                    <td>${employeesDTO.empEmail}</td>
+                                    <td>${employeesDTO.empPhone}</td>
+                                    <td>${employeesDTO.depName}</td>
+                                    <td>${employeesDTO.empIdCard}</td>
+                                    <td>${employeesDTO.empRemarks}</td>
 
-                                    <#--<td>${employees.depName}</td>-->
-                                    <td>${employees.empIdCard}</td>
-
-                                    <td>${employees.empRemarks}</td>
-
-                                    <td><a href="/personnel/employees/index?empId=${employees.empId}">修改</a></td>
-                                    <td><a href="/personnel/employees/delete?empId=${employees.empId}">删除</a></td>
+                                    <#--<td><a href="/personnel/employees/index?empId=${employeesDTO.empId}">修改</a></td>-->
+                                    <#--<td><a href="/personnel/employees/delete?empId=${employees.empId}">删除</a></td>-->
                                 </tr>
-                            </#list>
-                        </#if>
+
                         </tbody>
 
                         <#--主要内容content end -->
@@ -68,52 +62,81 @@
                 </div>
                 <!-- 表格内容 end  -->
 
-                <!-- 分页 start -->
+                    <img height="10%" width="100%" src="https://tva2.sinaimg.cn/large/006x3t5Xgy1gw4ly8ai2gg30u005kq3c.gif">
+
+                <h3>背景信息</h3>
                 <div class="col-md-12 column">
-                    <!-- 让分页居右-->
-                    <ul class="pagination pull-right">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+                        <#--<th>序号</th>-->
+                       <#-- <th>编号</th>
+                        <th>姓名</th>-->
+                        <th>学历</th>
+                        <th>政治面貌</th>
+                        <th>籍贯</th>
+                        <th>婚姻状况</th>
+                        <th>备注</th>
+                        <#-- <th>员工入职时间</th>
 
-                        <!-- 上一页处理  start-->
-                        <#if currentPage lte 1>
-                            <li class="disabled">
-                                <a href="#">上一页</a>
-                            </li>
-                        <#else>
-                            <li>
-                                <a href="/personnel/employees/list?page=${currentPage - 1}&size=${pageSize}">上一页</a>
-                            </li>
-                        </#if>
 
-                        <!-- 上一页处理  end-->
-                        <!-- 代循环遍历(根据DB中查询出来的 带分页查询所有的订单列表) start-->
-                        <#list 1..employeesPageList.getTotalPages() as index>
-                            <!--  让当前页置灰  -->
-                            <#if currentPage == index>
-                                <li class="disabled">
-                                    <a href="/personnel/employees/list?page=${index}&size=${pageSize}">${index}</a>
-                                </li>
-                            <#else>
-                                <li>
-                                    <a href="/personnel/employees/list?page=${index}&size=${pageSize}">${index}</a>
-                                </li>
-                            </#if>
-                        </#list>
+                       <#-- <th colspan="2">操作</th>-->
+                        </thead>
 
-                        <!-- 代循环遍历(根据DB中查询出来的 带分页查询所有的订单列表) start-->
-                        <!-- 下一页处理  start-->
-                        <#if currentPage gte employeesPageList.getTotalPages()>
-                            <li class="disabled">
-                                <a href="#">下一页</a>
-                            </li>
-                        <#else>
-                            <li>
-                                <a href="/personnel/employees/list?page=${currentPage + 1}&size=${pageSize}">上一页</a>
-                            </li>
-                        </#if>
-                        <!-- 下一页处理  end-->
-                    </ul>
+                        <tbody>
+                        <tr>
+                            <#--<td>${informationDTO.infId}</td>
+                            <td>${informationDTO.empName}</td>-->
+                            <td>${informationDTO.infEducation}</td>
+                            <td>${informationDTO.getInfPoliticalEnum().message}</td>
+                            <td>${informationDTO.infPlace}</td>
+                            <td>${informationDTO.getInfMaritalEnum().message}</td>
+
+                            <td>${informationDTO.infRemarks}</td>
+
+                           <#-- <td><a href="/personnel/employees/index?empId=${informationDTO.empId}">修改</a></td>-->
+                        </tr>
+                        </tbody>
+
+                        <#--主要内容content end -->
+                    </table>
                 </div>
-                <!-- 分页 end -->
+
+                <img height="10%" width="100%" src="https://tvax4.sinaimg.cn/large/006x3t5Xgy1gw4lzb7svig30u005k3zf.gif">
+
+                <h3>评价信息</h3>
+                <div class="col-md-12 column">
+                    <table class="table table-bordered table-condensed">
+                        <thead>
+
+                        <th>旷工天数</th>
+                        <th>出勤天数</th>
+                        <th>迟到次数</th>
+                        <th>加班工时</th>
+                        <th>本月评级</th>
+                        <th>备注信息</th>
+
+                        <#-- <th colspan="2">操作</th>-->
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>${evaluationDTO.evaAbsence}</td>
+                            <td>${evaluationDTO.evaAttendance}</td>
+                            <td>${evaluationDTO.evaLate}</td>
+                            <td>${evaluationDTO.evaOvertime}</td>
+                            <td>${evaluationDTO.evaLevel}</td>
+                            <td>${evaluationDTO.evaRemarks}</td>
+
+                            <#-- <td><a href="/personnel/employees/index?empId=${informationDTO.empId}">修改</a></td>-->
+                        </tr>
+                        </tbody>
+
+                        <#--主要内容content end -->
+                    </table>
+                </div>
+
+                <img height="30%" width="100%" src="https://tva3.sinaimg.cn/large/006x3t5Xgy1gw4ly1zyg5g30ku04kgs6.gif">
+
 
             </div>
         </div>

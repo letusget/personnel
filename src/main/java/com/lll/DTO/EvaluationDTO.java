@@ -1,24 +1,15 @@
-package com.lll.entity;
+package com.lll.DTO;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.io.Serializable;
-
-@Entity
 @Data
-@Table(name = "evaluation")
-public class Evaluation implements Serializable
-{
+public class EvaluationDTO {
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
 
     /** 评价id */
-    @Id
     private String evaId;
 
     /**

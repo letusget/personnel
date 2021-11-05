@@ -18,13 +18,13 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 综合 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">业绩评价</li>
-                <li><a href="/personnel/evaluation/list">列表</a></li>
-                <li><a href="/personnel/evaluation/index">新增</a></li>
+                <li><a href="/personnel/evaluation/list">一览</a></li>
+                <#--<li><a href="/personnel/evaluation/index">新增</a></li>-->
 
 
                 <li class="dropdown-header">背景信息</li>
-                <li><a href="/personnel/info/list">列表</a></li>
-                <li><a href="/personnel/info/index">新增</a></li>
+                <li><a href="/personnel/info/list">一览</a></li>
+                <#--<li><a href="/personnel/info/index">新增</a></li>-->
                 <li><a href="/personnel/info/search">查询</a></li>
             </ul>
         </li>
@@ -33,7 +33,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 部门 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li class="dropdown-header">部门调整</li>
-                <li><a href="/personnel/departments/list">列表</a></li>
+                <li><a href="/personnel/departments/list">一览</a></li>
                 <li><a href="/personnel/departments/index">新增</a></li>
             </ul>
         </li>

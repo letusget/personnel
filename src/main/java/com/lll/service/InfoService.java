@@ -11,10 +11,10 @@ import org.springframework.data.domain.Pageable;
 public interface InfoService {
     /**
      * 根据员工编号查询员工背景信息
-     * @param empId
+     * @param infId
      * @return
      */
-    Information findById(String empId);
+    Information findById(String infId);
 
     /**
      * 分页查询所有员工工资信息
@@ -32,10 +32,10 @@ public interface InfoService {
 
     /**
      * 根据员工编号删除员工工资信息
-     * @param empId
+     * @param infId
      * @return
      */
-    void delete(String empId);
+    void delete(String infId);
 
     // 根据员工姓名查找员工工资信息
     InformationDTO findByEmpName(String empName);

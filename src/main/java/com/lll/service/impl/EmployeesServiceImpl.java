@@ -77,7 +77,7 @@ public class EmployeesServiceImpl implements EmployeesService
         String Id=employees.getEmpId();
         //新建工资和评价信息
        /* Salaries salaries=new Salaries();
-        Evaluation evaluation=new Evaluation();
+        EvaluationDTO evaluation=new EvaluationDTO();
         //salaries(Id,employees.getEmpName(),8000,0,"无",0,"",0,8000,"");
         salaries.setEmpId(Id);
         salaries.setEmpName(employees.getEmpName());

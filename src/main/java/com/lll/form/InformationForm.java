@@ -5,6 +5,8 @@ import com.lll.enums.InfMaritalEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
 
+import javax.persistence.Id;
+
 /**
  * 封装 背景表信息
  * @author konvi
@@ -12,12 +14,11 @@ import lombok.Data;
  * @date 2021/9/4
  */
 @Data
-public class InformationForm
-{
+public class InformationForm {
     /**
-     * 员工ID
+     * 信息ID
      */
-    private String empId;
+    private String infId;
 
 
     /**
@@ -33,7 +34,7 @@ public class InformationForm
     /**
      * 政治面貌
      */
-    private String infPolitical;
+    private Integer infPolitical;
 
     /**
      * 籍贯
@@ -43,7 +44,7 @@ public class InformationForm
     /**
      * 婚姻状况
      */
-    private Integer infMarital= InfMaritalEnum.UNMARRIED.getCode(); //默认未婚
+    private Integer infMarital = InfMaritalEnum.UNMARRIED.getCode(); //默认未婚
 
     /**
      * 备注
@@ -54,8 +55,15 @@ public class InformationForm
      * 获取婚姻状态的枚举类
      */
     @JsonIgnore
-    public InfMaritalEnum getEmpMaritalEnum()
-    {
-        return EnumUtil.getByCode(infMarital,InfMaritalEnum.class);
+    public InfMaritalEnum getInfMaritalEnum() {
+        return EnumUtil.getByCode(infMarital, InfMaritalEnum.class);
+    }
+
+    /**
+     * 获取政治面貌的枚举类
+     */
+    @JsonIgnore
+    public InfMaritalEnum getEmpMaritalEnum() {
+        return EnumUtil.getByCode(infMarital, InfMaritalEnum.class);
     }
 }

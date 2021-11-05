@@ -36,13 +36,13 @@
                                 <td>${info.empId}</td>
                                 <td>${info.empName}</td>
                                 <td>${info.infEducation}</td>
-                                <td>${info.infPolitical}</td>
+                                <td>${info.getInfPoliticalEnum().message}</td>
                                 <td>${info.infEntry}</td>
                                 <td>${info.infPlace}</td>
                                 <td>${info.getInfMaritalEnum().message}</td>
                                 <td>${info.infRemarks}</td>
-                                <td><a href="/personnel/info/index1?empId=${info.empId}">修改</a></td>
-                                <td><a href="/personnel/info/delete1?empId=${info.empId}">删除</a></td>
+                                <td><a href="/personnel/info/index1?infId=${info.infId}">修改</a></td>
+                                <td><a href="/personnel/info/delete1?infId=${info.infId}">删除</a></td>
                             </tr>
                         </#list>
                         </tbody>

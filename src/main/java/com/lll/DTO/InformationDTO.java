@@ -1,4 +1,8 @@
 package com.lll.DTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lll.enums.InfMaritalEnum;
+import com.lll.enums.InfPoliticalEnum;
+import com.lll.utils.EnumUtil;
 import lombok.Data;
 
 import javax.persistence.Id;
@@ -21,10 +25,10 @@ public class InformationDTO {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 员工编号
+     * 信息ID
      */
-    @Id
-    private String empId;
+    private String infId;
+
 
     /**
      * 员工姓名
@@ -32,42 +36,45 @@ public class InformationDTO {
     private String empName;
 
     /**
-     * 基本金额
+     * 学历
      */
-    private BigDecimal salBase;
+    private String infEducation;
 
     /**
-     * 奖金金额
+     * 政治面貌
      */
-    private BigDecimal salBonus;
+    private Integer infPolitical;
 
     /**
-     * 奖金描述
+     * 籍贯
      */
-    private String salBonusDescribes;
+    private String infPlace;
 
     /**
-     * 扣除金额
+     * 婚姻状况
      */
-    private BigDecimal salFine;
-
-    /**
-     * 扣除描述
-     */
-    private String salFineDescribes;
-
-    /**
-     * 保险福利
-     */
-    private BigDecimal salBenefits;
-
-    /**
-     * 最终金额
-     */
-    private BigDecimal salFinal;
+    private Integer infMarital= InfMaritalEnum.UNMARRIED.getCode(); //默认未婚
 
     /**
      * 备注
      */
-    private String salRemarks;
+    private String infRemarks;
+
+    /**
+     * 获取婚姻状态的枚举类
+     */
+    @JsonIgnore
+    public InfMaritalEnum getInfMaritalEnum()
+    {
+        return EnumUtil.getByCode(infMarital,InfMaritalEnum.class);
+    }
+
+    /**
+     * 获取政治面貌的枚举类
+     */
+    @JsonIgnore
+    public InfPoliticalEnum getInfPoliticalEnum()
+    {
+        return EnumUtil.getByCode(infPolitical,InfPoliticalEnum.class);
+    }
 }

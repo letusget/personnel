@@ -130,11 +130,11 @@
                                     <select name="infPolitical" type="text" id="empPolitical"
                                             onclick="onclickPolitical()" class="form-control" value="${(information.infPolitical)!''}">
                                         <option style="display: none">请在下面选择目前的政治面貌</option>
-                                        <option value="0">共青团员</option>
-                                        <option value="1">党员</option>
-                                        <option value="2">无党派人士</option>
-                                        <option value="3">其他党派人士</option>
-                                        <option value="4">群众</option>
+                                        <option value="0">共产党员</option>
+                                        <option value="1">共青团员</option>
+                                        <option value="2">群众</option>
+                                        <option value="3">无党派人士</option>
+                                        <option value="4">其他党派人士</option>
                                     </select>
 
                                     <#--<input name="infPolitical" type="text" id="empPolitical" onclick="onclickPolitical()" class="form-control" value="${(information.infPolitical)!''}"/>-->

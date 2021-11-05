@@ -30,13 +30,13 @@ public class InfoServiceImpl implements InfoService
 
     /**
      * 根据员工编号查询员工工资信息
-     * @param empId
+     * @param infId
      * @return
      */
     @Override
-    public Information findById(String empId)
+    public Information findById(String infId)
     {
-        return informationDAO.findById(empId).orElse(null);
+        return informationDAO.findById(infId).orElse(null);
     }
 
     /**
@@ -63,13 +63,13 @@ public class InfoServiceImpl implements InfoService
 
     /**
      * 根据员工编号删除员工工资信息
-     * @param empId
+     * @param infId
      */
     @Override
-    public void delete(String empId)
+    public void delete(String infId)
     {
         //根据员工ID 查询员工信息
-        Information information = informationDAO.findById(empId).orElse(null);
+        Information information = informationDAO.findById(infId).orElse(null);
 
         //如果员工不存在，就抛出异常：员工不存在
         if (information == null)

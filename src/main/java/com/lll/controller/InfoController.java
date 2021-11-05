@@ -83,32 +83,60 @@ public class InfoController {
 
         return new ModelAndView("info/list1",map);
     }
+    @GetMapping("/list2")
+    public ModelAndView list2(@RequestParam(value = "page",defaultValue ="1") Integer page, @RequestParam(value = "size",defaultValue = "10")Integer size, Map<String,Object> map)
+    {
+        PageRequest pageRequest = PageRequest.of(page - 1,size);
+
+        Page<Information> infoPageList = infoService.findAll(pageRequest);
+
+        // 带分页显示查询到的工资列表
+        map.put("infoPageList",infoPageList);
+
+        // 设置当前页
+        map.put("currentPage",page);
+
+        // 设置每页显示多少条数据
+        map.put("size",size);
+
+        return new ModelAndView("info/list2",map);
+    }
 
     /**
-     * 弹出 工资表修改页面
-     * @param empId
+     * 弹出 背景表修改页面
+     * @param infId
      * @param map
      * @return
      */
     @GetMapping("/index")
-    public ModelAndView index(@RequestParam(value = "empId",required = false)String empId,Map<String,Object>map)
+    public ModelAndView index(@RequestParam(value = "infId",required = false)String infId,Map<String,Object>map)
     {
-        if (empId != null)
+        if (infId != null)
         {
-            Information information = infoService.findById(empId);
+            Information information = infoService.findById(infId);
             map.put("information", information);
         }
         return new ModelAndView("info/index",map);
     }
     @GetMapping("/index1")
-    public ModelAndView index1(@RequestParam(value = "empId",required = false)String empId,Map<String,Object>map)
+    public ModelAndView index1(@RequestParam(value = "infId",required = false)String infId,Map<String,Object>map)
     {
-        if (empId != null)
+        if (infId != null)
         {
-            Information information = infoService.findById(empId);
+            Information information = infoService.findById(infId);
             map.put("information", information);
         }
         return new ModelAndView("info/index1",map);
+    }
+    @GetMapping("/index2")
+    public ModelAndView index2(@RequestParam(value = "infId",required = false)String infId,Map<String,Object>map)
+    {
+        if (infId != null)
+        {
+            Information information = infoService.findById(infId);
+            map.put("information", information);
+        }
+        return new ModelAndView("info/index2",map);
     }
 
 
@@ -133,14 +161,14 @@ public class InfoController {
         Information information = new Information();
         try
         {
-            // 如果员工编号不为空,说明是修改工资信息
+
             // StringUtils.hasText(String) 若String值为null或''等,则返回值为false
-            if (StringUtils.hasText(informationForm.getEmpId()))
+            if (StringUtils.hasText(informationForm.getInfId()))
             {
-                information = infoService.findById(informationForm.getEmpId());
+                information = infoService.findById(informationForm.getInfId());
             } else // 如果员工编号为空,说明是新建工资信息
             {
-                informationForm.setEmpId(KeyUtil.genUniqueKey());
+                informationForm.setInfId(KeyUtil.genUniqueKey());
             }
 
             // 将form中的数据传到salaries对象中
@@ -161,12 +189,12 @@ public class InfoController {
         } catch (SalariesException e)
         {
             session.setAttribute("msg",e.getMessage());
-            session.setAttribute("url","/personnel/info/index");
+            session.setAttribute("url", request.getContextPath()+"/info/list");
             return new ModelAndView("common/error");
         }
 
         session.setAttribute("msg", ResultEnum.EMPLOYEE_INFORMATION_SUCCESS.getMessage());
-        session.setAttribute("url","/personnel/info/list");
+        session.setAttribute("url",request.getContextPath()+"/info/list");
         return new ModelAndView("common/success");
     }
     @PostMapping("/save1")
@@ -185,12 +213,12 @@ public class InfoController {
         {
             // 如果员工编号不为空,说明是修改工资信息
             // StringUtils.hasText(String) 若String值为null或''等,则返回值为false
-            if (StringUtils.hasText(informationForm.getEmpId()))
+            if (StringUtils.hasText(informationForm.getInfId()))
             {
-                information = infoService.findById(informationForm.getEmpId());
+                information = infoService.findById(informationForm.getInfId());
             } else // 如果员工编号为空,说明是新建工资信息
             {
-                informationForm.setEmpId(KeyUtil.genUniqueKey());
+                informationForm.setInfId(KeyUtil.genUniqueKey());
             }
 
             // 将form中的数据传到salaries对象中
@@ -222,16 +250,16 @@ public class InfoController {
 
     /**
      * 删除 背景表信息
-     * @param empId
+     * @param InfId
      * @param map
      * @return
      */
     @GetMapping("/delete")
-    public ModelAndView delete(@RequestParam("empId")String empId,Map<String,Object>map)
+    public ModelAndView delete(@RequestParam("InfId")String InfId,Map<String,Object>map)
     {
         try
         {
-            infoService.delete(empId);
+            infoService.delete(InfId);
         } catch (SalariesException e)
         {
             map.put("msg",e.getMessage());
@@ -243,11 +271,11 @@ public class InfoController {
         return new ModelAndView("common/success",map);
     }
     @GetMapping("/delete1")
-    public ModelAndView delete1(@RequestParam("empId")String empId,Map<String,Object>map)
+    public ModelAndView delete1(@RequestParam("InfId")String InfId,Map<String,Object>map)
     {
         try
         {
-            infoService.delete(empId);
+            infoService.delete(InfId);
         } catch (SalariesException e)
         {
             map.put("msg",e.getMessage());

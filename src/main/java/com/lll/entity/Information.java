@@ -3,14 +3,17 @@ package com.lll.entity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.lll.enums.InfMaritalEnum;
+import com.lll.enums.InfPoliticalEnum;
 import com.lll.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,13 +26,13 @@ import java.util.Date;
 @Entity
 @Data
 @DynamicUpdate
+@Table(name="information")
 public class Information implements Serializable
 {
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
-
     @Id
     /**
      * 信息ID
@@ -55,7 +58,7 @@ public class Information implements Serializable
     /**
      * 政治面貌
      */
-    private String infPolitical;
+    private Integer infPolitical;
 
     /**
      * 入职时间
@@ -89,4 +92,12 @@ public class Information implements Serializable
         return EnumUtil.getByCode(infMarital,InfMaritalEnum.class);
     }
 
+    /**
+     * 获取政治面貌的枚举类
+     */
+    @JsonIgnore
+    public InfPoliticalEnum getInfPoliticalEnum()
+    {
+        return EnumUtil.getByCode(infPolitical,InfPoliticalEnum.class);
+    }
 }
