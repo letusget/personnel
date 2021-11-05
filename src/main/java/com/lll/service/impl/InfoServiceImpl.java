@@ -1,7 +1,7 @@
 package com.lll.service.impl;
 
 import com.lll.DTO.InformationDTO;
-import com.lll.dao.InfoDAO;
+import com.lll.dao.InformationDAO;
 import com.lll.entity.Information;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
@@ -25,7 +25,7 @@ import javax.transaction.Transactional;
 public class InfoServiceImpl implements InfoService
 {
     @Autowired
-    private InfoDAO informationDAO;
+    private InformationDAO informationDAO;
 
 
     /**

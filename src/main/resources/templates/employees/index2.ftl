@@ -28,7 +28,7 @@
             alert("照片不能为空");
         }
 
-        var patt=/^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^<>\"\"])*$/;
+        var patt=/(https?:[^:<>"]*\/)([^:<>"]*)(\.((png!thumbnail)|(png)|(jpg)|(webp)))/;
         if (!patt.test(photoText))
         {
             alert("请检查证件照来源，输入正确链接");
@@ -61,7 +61,7 @@
         }*/
 
         //验证数字
-        var patt=/^\d{n}$/;
+        var patt=/^[0-1]*$/;
         var empSex=document.getElementById("empSex").value;
         if (!empSex)
         {

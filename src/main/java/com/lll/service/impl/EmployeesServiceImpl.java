@@ -2,7 +2,7 @@ package com.lll.service.impl;
 
 import com.lll.dao.EvaluationDAO;
 import com.lll.dao.EmployeesDAO;
-import com.lll.dao.InfoDAO;
+import com.lll.dao.InformationDAO;
 import com.lll.entity.Employees;
 import com.lll.entity.Evaluation;
 import com.lll.entity.Information;
@@ -16,9 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -29,7 +27,7 @@ public class EmployeesServiceImpl implements EmployeesService
     private EmployeesDAO employeesDAO;
 
     @Autowired
-    private InfoDAO infoDAO;
+    private InformationDAO informationDAO;
 
     @Autowired
     private EvaluationDAO evaluationDAO;
@@ -141,7 +139,7 @@ public class EmployeesServiceImpl implements EmployeesService
         Employees employee=employeesDAO.findById(empId).orElse(null);
 
         // 根据员工ID 查询背景信息
-        Information information = infoDAO.findById(empId).orElse(null);
+        Information information = informationDAO.findById(empId).orElse(null);
 
         // 根据员工ID 查询评价信息
         Evaluation evaluation = evaluationDAO.findById(empId).orElse(null);
@@ -162,7 +160,7 @@ public class EmployeesServiceImpl implements EmployeesService
         }*/
         if (information != null)
         {
-            infoDAO.delete(information);
+            informationDAO.delete(information);
         }
 
         if (evaluation != null)

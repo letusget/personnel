@@ -10,8 +10,10 @@
         <li class="dropdown-header">员工信息</li>
 
         <li><a href="/personnel/employees/list">员工</a></li>
-        <li><a href="/personnel/employees/index">新增</a></li>
+        <li><a href="/personnel/employees/index">新增员工</a></li>
+        <li><a href="/personnel/user/index">新增用户</a></li>
         <li><a href="/personnel/employees/search">查询</a></li>
+
         </li>
 
         <li class="dropdown open">

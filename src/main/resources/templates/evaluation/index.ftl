@@ -3,6 +3,9 @@
 <#include  "../common/header.ftl">
 
 <body>
+
+
+
 <!-- (2)自己写的div start -->
 <div id="wrapper" class="toggled">
     <#-- (3)边栏sidebar-->

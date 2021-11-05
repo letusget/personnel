@@ -40,6 +40,11 @@
             alert("政治面貌信息不能为空");
 
         }
+        var patt=/^[0-4]*$/;
+        if (!patt.test(empPolitical))
+        {
+            alert(empPolitical+" -> 政治面貌选择不合规范，请重新选择！");
+        }
     }
 
     function onClickPlace()
@@ -72,6 +77,12 @@
         {
             alert("婚姻状态不能为空");
 
+        }
+
+        var patt=/^[0-3]*$/;
+        if (!patt.test(empMarry))
+        {
+            alert(empMarry+" -> 婚姻状态选择不合规范，请重新选择！");
         }
 
         var empPlace=document.getElementById("empPlace");
