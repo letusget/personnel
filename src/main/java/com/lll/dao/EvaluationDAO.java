@@ -18,7 +18,7 @@ public interface EvaluationDAO extends JpaRepository<Evaluation, String>
      * @param evaId
      * @return
      */
-    Evaluation findByEmpId(String evaId);
+    //Evaluation findByEvaId(String evaId);
 
     /**
      * 根据姓名查询

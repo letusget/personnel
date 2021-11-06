@@ -59,7 +59,7 @@
                             </li>
                         <#else>
                             <li>
-                                <a href="/personnel/info/list?page=${currentPage - 1}&size=${size}">下一页</a>
+                                <a href="/personnel/info/list?page=${currentPage - 1}&size=${size}">上一页</a>
                             </li>
                         </#if>
                         <#--上一页处理 end-->
@@ -84,7 +84,7 @@
                             </li>
                         <#else>
                             <li>
-                                <a href="/personnel/info/list?page=${currentPage + 1}&size=${size}">上一页</a>
+                                <a href="/personnel/info/list?page=${currentPage + 1}&size=${size}">下一页</a>
                             </li>
                         </#if>
                         <#-- 下一页处理 end-->

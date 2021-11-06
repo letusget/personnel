@@ -27,7 +27,18 @@ public class EvaluationServiceImpl implements EvaluationService
 
     /**  根据ID查询 */
     @Override
-    public Evaluation findByEmpId(String evaId) {
+    public Evaluation findByEvaId(String evaId) {
+        return evaluationDAO.findById(evaId).orElse(null);
+    }
+
+    /**
+     * 根据评价id查找
+     * @param evaId
+     * @return
+     */
+    @Override
+    public Evaluation findById(String evaId)
+    {
         return evaluationDAO.findById(evaId).orElse(null);
     }
 

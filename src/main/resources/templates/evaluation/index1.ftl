@@ -17,11 +17,7 @@
                     <#--显示系统时间-->
                     <div class="showTime">当前时间：2021年8月17-12时35分16秒</div>
                     <form role="form" method="post" action="/personnel/evaluation/save1">
-                        <!--
-                        <div class="form-group">
-                            <label>员工ID</label><input type="text" class="form-control" id="empId" name="empId" ''}"/>
-                        </div>
-                        -->
+
                         <div class="form-group">
                             <label>员工出勤</label><input type="text" class="form-control" id="evaAttendance" placeholder="天数，满勤为22天"
                                                       name="evaAttendance" value="${(evaluation.evaAttendance)!''}"/>

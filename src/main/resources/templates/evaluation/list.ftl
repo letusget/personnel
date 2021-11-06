@@ -22,10 +22,12 @@
                         <#--<th>员工ID</th>-->
                         <th>序号</th>
                         <th>员工姓名</th>
+                        <th>员工旷工</th>
                         <th>员工出勤</th>
                         <th>员工迟到</th>
-                        <th>员工评级</th>
+                        <th>员工请假</th>
                         <th>加班工时</th>
+                        <th>员工评级</th>
                         <th>员工备注</th>
 
                         <th colspan="2">操作</th>
@@ -38,13 +40,15 @@
                                     <#--<td>${evaluation.empId}</td>-->
                                     <td>${evaluation_index+1}</td>
                                     <td>${evaluation.empName}</td>
+                                    <td>${evaluation.evaAbsence}</td>
                                     <td>${evaluation.evaAttendance}</td>
                                     <td>${evaluation.evaLate}</td>
-                                    <td>${evaluation.evaLevel}</td>
+                                    <td>${evaluation.evaVacate}</td>
                                     <td>${evaluation.evaOvertime}</td>
+                                    <td>${evaluation.evaLevel}</td>
                                     <td>${evaluation.evaRemarks}</td>
 
-                                    <td><a href="/personnel/evaluation/index?empId=${evaluation.empId}">修改</a></td>
+                                    <td><a href="/personnel/evaluation/index?evaId=${evaluation.evaId}">修改</a></td>
                                     <#--<td><a href="/personnel/evaluation/delete?empId=${evaluation.empId}">删除</a></td>-->
                                 </tr>
                             </#list>

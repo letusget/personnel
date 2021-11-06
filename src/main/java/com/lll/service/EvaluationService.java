@@ -10,7 +10,15 @@ import java.util.List;
 public interface EvaluationService
 {
     /**  根据ID查询 */
-    Evaluation findByEmpId(String evaId);
+    Evaluation findByEvaId(String evaId);
+
+    /**
+     * 根据评价id查找
+     * @param evaId
+     * @return
+     */
+    Evaluation findById(String evaId);
+
 
     /**
      * 根据员工id，查询评价信息

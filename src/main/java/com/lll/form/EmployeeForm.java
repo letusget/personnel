@@ -49,7 +49,7 @@ public class EmployeeForm
     /**
      * 员工部门编号
      */
-    private String depId;
+    //private String depId;
 
     /**
      * 员工部门名称

@@ -123,6 +123,7 @@ public class EmployeesController {
             Employees employees = employeesService.findByEmpId(empId);
             //设置员工信息
             map.put("employees", employees);
+
         }
         //查询部门信息
 
@@ -161,6 +162,7 @@ public class EmployeesController {
             Employees employees = employeesService.findByEmpId(empId);
             //设置员工信息
             map.put("employees", employees);
+
         }
         //查询部门信息
 
@@ -189,14 +191,22 @@ public class EmployeesController {
             //如果empId 有值，则说明是修改
             if (StringUtils.hasText(form.getEmpId())) {
                 employees = employeesService.findByEmpId(form.getEmpId());
-            } else
+                //将form 中的对象 copy 给employees
+                BeanUtils.copyProperties(form, employees);
+                employeesService.update(employees);
+            }
+            else
             {
                 form.setEmpId(KeyUtil.genUniqueKey());
+                //将form 中的对象 copy 给employees
+                BeanUtils.copyProperties(form, employees);
+                //保存 员工信息
+                employeesService.save(employees);
             }
             //将form 中的对象 copy 给employees
-            BeanUtils.copyProperties(form, employees);
+            //BeanUtils.copyProperties(form, employees);
             //保存 员工信息
-            employeesService.save(employees);
+            //employeesService.save(employees);
         } catch (PersonnelException e) {
             session.setAttribute("msg", e.getMessage());
             session.setAttribute("url", request.getContextPath() + "/employees/index");
@@ -220,14 +230,21 @@ public class EmployeesController {
             //如果empId 有值，则说明是修改
             if (StringUtils.hasText(form.getEmpId())) {
                 employees = employeesService.findByEmpId(form.getEmpId());
+                //将form 中的对象 copy 给employees
+                BeanUtils.copyProperties(form, employees);
+                employeesService.update(employees);
             } else
             {
                 form.setEmpId(KeyUtil.genUniqueKey());
+                //将form 中的对象 copy 给employees
+                BeanUtils.copyProperties(form, employees);
+                //保存 员工信息
+                employeesService.save(employees);
             }
             //将form 中的对象 copy 给employees
-            BeanUtils.copyProperties(form, employees);
+            //BeanUtils.copyProperties(form, employees);
             //保存 员工信息
-            employeesService.save(employees);
+            //employeesService.save(employees);
         } catch (PersonnelException e) {
             session.setAttribute("msg", e.getMessage());
             session.setAttribute("url", request.getContextPath() + "/employees/index1");

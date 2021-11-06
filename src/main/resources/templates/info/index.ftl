@@ -129,7 +129,8 @@
                             <form role="form" method="post" action="/personnel/info/save" onsubmit="return onsubmitFun()">
                                 <div class="form-group">
                                     <label>员工姓名</label>
-                                    <input name="empName" type="text" id="empName" class="form-control" value="${(information.empName)!''}"/>
+                                    <input name="empName" type="text" id="empName" class="form-control"
+                                           value="${(information.empName)!''}"/>
                                 </div>
                                 <div class="form-group">
                                     <label>学历</label>
@@ -186,7 +187,7 @@
                                     <input name="infRemarks" type="text" id="infoRemarks" onclick="onClickRemarks()" class="form-control" value="${(information.infRemarks)!''}"/>
                                 </div>
                                 <button type="submit" class="btn btn-default">提交</button>
-                                <input type="hidden" name="empId" value="${(information.empId)!''}">
+                                <input type="hidden" name="infId" value="${(information.infId)!''}">
                             </form>
                         </div>
                     </div>

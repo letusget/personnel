@@ -71,7 +71,7 @@ public class Employees implements Serializable
      * 员工部门编号
      * varchar 32
      */
-    private String depId;
+    //private String depId;
 
     /**
      * 员工部门名称

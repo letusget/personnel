@@ -175,14 +175,6 @@ public class InfoController {
             // 将form中的数据传到salaries对象中
             BeanUtils.copyProperties(informationForm, information);
 
-            /*// 最终金额
-            BigDecimal salFinal;
-
-            // 计算最终金额
-            salFinal = information.getSalBase().add(information.getSalBonus()).add(information.getSalBenefits()).subtract(information.getSalFine());
-
-            // 将最终金额传入数据库中
-            information.setSalFinal(salFinal);*/
 
             // 背景信息入库
             infoService.save(information);
@@ -190,7 +182,7 @@ public class InfoController {
         } catch (SalariesException e)
         {
             session.setAttribute("msg",e.getMessage());
-            session.setAttribute("url", request.getContextPath()+"/info/list");
+            session.setAttribute("url", request.getContextPath()+"/info/index");
             return new ModelAndView("common/error");
         }
 

@@ -99,15 +99,49 @@ public class EvaluationController
 
     /**
      * 弹出修改页面
+     * @param evaId
+     * @param map
      */
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "evaId", required = false) String evaId, Map<String, Object> map)
     {
+        System.out.println("test");
         if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findByEmpId(evaId);
+            System.out.println("test1");
+            Evaluation evaluation = evaluationService.findById(evaId);
             map.put("evaluation", evaluation);
+
+
+            System.out.println(evaluation.getEvaId());
+            System.out.println(evaluation.getEmpName());
+
+            Integer sum=0;
+            if (evaluation.getEvaVacate() <= 3){
+                sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 + evaluation.getEvaOvertime()*1;
+            }else{
+                sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 - (evaluation.getEvaVacate()-3)*5 + evaluation.getEvaOvertime()*1;
+            }
+
+            if (sum>=90)
+            {
+                evaluation.setEvaLevel("A");
+            }else if (sum<90 && sum>=80){
+                evaluation.setEvaLevel("B");
+            }else if (sum<80 && sum>=70){
+                evaluation.setEvaLevel("C");
+            }else if (sum<70 && sum>=60){
+                evaluation.setEvaLevel("D");
+            }else if (sum<60){
+                evaluation.setEvaLevel("E");
+            }
+
+
+            map.put("evaluation", evaluation);
+
+
         }
+        System.out.println("test2");
         return new ModelAndView("evaluation/index", map);
     }
     @GetMapping("/index1")
@@ -115,7 +149,34 @@ public class EvaluationController
     {
         if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findByEmpId(evaId);
+            Evaluation evaluation = evaluationService.findByEvaId(evaId);
+            System.out.println(evaluation.getEvaId());
+            System.out.println(evaluation.getEmpId());
+            System.out.println(evaluation.getEmpName());
+            System.out.println(evaluation.getEvaLevel());
+
+            Integer sum=0;
+            if (evaluation.getEvaVacate() <= 3){
+                sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 + evaluation.getEvaOvertime()*1;
+            }
+            else
+            {
+                sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 - (evaluation.getEvaVacate()-3)*5 + evaluation.getEvaOvertime()*1;
+            }
+
+            if (sum>=90)
+            {
+                evaluation.setEvaLevel("A");
+            }else if (sum<90 && sum>=80){
+                evaluation.setEvaLevel("B");
+            }else if (sum<80 && sum>=70){
+                evaluation.setEvaLevel("C");
+            }else if (sum<70 && sum>=60){
+                evaluation.setEvaLevel("D");
+            }else if (sum<60){
+                evaluation.setEvaLevel("E");
+            }
+
             map.put("evaluation", evaluation);
         }
         return new ModelAndView("evaluation/index1", map);
@@ -140,7 +201,7 @@ public class EvaluationController
         {
             if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findByEmpId(form.getEvaId());
+                evaluation = evaluationService.findByEvaId(form.getEvaId());
             } else
             {
                 form.setEvaId(KeyUtil.genUniqueKey());
@@ -175,7 +236,7 @@ public class EvaluationController
         {
             if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findByEmpId(form.getEvaId());
+                evaluation = evaluationService.findByEvaId(form.getEvaId());
             } else
             {
                 form.setEvaId(KeyUtil.genUniqueKey());

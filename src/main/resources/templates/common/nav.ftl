@@ -7,11 +7,13 @@
         </li>
         <li>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 在职 <span class="caret"></span></a>
+        <li class="dropdown-header">用户操作</li>
+        <li><a href="/personnel/user/index">新增登录</a></li>
+
         <li class="dropdown-header">员工信息</li>
 
         <li><a href="/personnel/employees/list">员工</a></li>
-        <li><a href="/personnel/employees/index">新增员工</a></li>
-        <li><a href="/personnel/user/index">新增用户</a></li>
+        <li><a href="/personnel/employees/index">新增</a></li>
         <li><a href="/personnel/employees/search">查询</a></li>
 
         </li>
@@ -19,15 +21,17 @@
         <li class="dropdown open">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-fw fa-plus"></i> 综合 <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-                <li class="dropdown-header">业绩评价</li>
-                <li><a href="/personnel/evaluation/list">一览</a></li>
-                <#--<li><a href="/personnel/evaluation/index">新增</a></li>-->
-
 
                 <li class="dropdown-header">背景信息</li>
                 <li><a href="/personnel/info/list">一览</a></li>
                 <#--<li><a href="/personnel/info/index">新增</a></li>-->
                 <li><a href="/personnel/info/search">查询</a></li>
+
+                <li class="dropdown-header">业绩评价</li>
+                <li><a href="/personnel/evaluation/list">一览</a></li>
+                <#--<li><a href="/personnel/evaluation/index">新增</a></li>-->
+
+
             </ul>
         </li>
 
