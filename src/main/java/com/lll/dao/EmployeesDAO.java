@@ -23,4 +23,18 @@ public interface EmployeesDAO extends JpaRepository<Employees,String>
      * @return
      */
     Employees findByEmpName(String empName);
+
+    /**
+     * 根据部门名称 查询相关员工
+     * @param depName
+     * @return
+     */
+    List<Employees> findByDepName(String depName);
+
+    /**
+     * 根据员工性别 查询相关员工
+     * @param empSex
+     * @return
+     */
+    List<Employees> findByEmpSex(Integer empSex);
 }

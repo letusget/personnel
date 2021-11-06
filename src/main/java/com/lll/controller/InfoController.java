@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -288,13 +289,28 @@ public class InfoController {
     }
 
     @GetMapping("/search")
-    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName, Map<String, Object> map)
-    {
+    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName,
+                               @RequestParam(value = "infEducation", required = false) Integer infEducation,
+                               @RequestParam(value = "infPolitical", required = false) Integer infPolitical,
+                               @RequestParam(value = "infMarital", required = false) Integer infMarital,
+                               Map<String, Object> map) {
+        if (empName != null && infEducation != null && infPolitical != null && infMarital != null){
+
+        }
         return new ModelAndView("info/search", map);
     }
+
+
+
     @GetMapping("/search1")
-    public ModelAndView search1(@RequestParam(value = "empName", required = false) String empName, Map<String, Object> map)
-    {
+    public ModelAndView search1(@RequestParam(value = "empName", required = false) String empName,
+                                @RequestParam(value = "infEducation", required = false) Integer infEducation,
+                                @RequestParam(value = "infPolitical", required = false) Integer infPolitical,
+                                @RequestParam(value = "infMarital", required = false) Integer infMarital,
+                                Map<String, Object> map) {
+        if (empName != null && infEducation != null && infPolitical != null && infMarital != null){
+
+        }
         return new ModelAndView("info/search1", map);
     }
 
@@ -313,9 +329,83 @@ public class InfoController {
             map.put("msg", e.getMessage());
             return new ModelAndView("common/error", map);
         }
-        map.put("salaries", informationDTO);
+        map.put("info", informationDTO);
         return new ModelAndView("info/result", map);
     }
+
+
+    @GetMapping("/result2")
+    public ModelAndView result2(@RequestParam("infEducation") String infEducation,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> informationList = infoService.findByInfEducation(infEducation);
+        try {
+            List<Information> information1 = infoService.findByInfEducation(infEducation);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (informationList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search");
+            return new ModelAndView("common/error3", map);
+        }
+        map.put("informationList", informationList);
+        return new ModelAndView("info/result2", map);
+    }
+
+    @GetMapping("/result3")
+    public ModelAndView result3(@RequestParam("infPolitical") Integer infPolitical,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> infPoliticalList = infoService.findByInfPolitical(infPolitical);
+        try {
+            List<Information> information2 = infoService.findByInfPolitical(infPolitical);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (infPoliticalList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search");
+            return new ModelAndView("common/error4", map);
+        }
+        map.put("infPoliticalList", infPoliticalList);
+        return new ModelAndView("info/result3", map);
+    }
+
+    @GetMapping("/result4")
+    public ModelAndView result4(@RequestParam("infMarital") Integer infMarital,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> infMaritalList = infoService.findByInfMarital(infMarital);
+        try {
+            List<Information> information3 = infoService.findByInfMarital(infMarital);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (infMaritalList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search");
+            return new ModelAndView("common/error5", map);
+        }
+        map.put("infMaritalList", infMaritalList);
+        return new ModelAndView("info/result4", map);
+    }
+
     @GetMapping("/result1")
     public ModelAndView result1(@RequestParam("empName") String empName, Map<String, Object> map, HttpServletRequest request)
     {
@@ -330,7 +420,79 @@ public class InfoController {
             map.put("msg", e.getMessage());
             return new ModelAndView("common/error", map);
         }
-        map.put("salaries", informationDTO);
+        map.put("info", informationDTO);
         return new ModelAndView("info/result1", map);
+    }
+
+    @GetMapping("/result5")
+    public ModelAndView result5(@RequestParam("infEducation") String infEducation,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> informationList = infoService.findByInfEducation(infEducation);
+        try {
+            List<Information> information1 = infoService.findByInfEducation(infEducation);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (informationList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search1");
+            return new ModelAndView("common/error3", map);
+        }
+        map.put("informationList", informationList);
+        return new ModelAndView("info/result5", map);
+    }
+
+    @GetMapping("/result6")
+    public ModelAndView result6(@RequestParam("infPolitical") Integer infPolitical,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> infPoliticalList = infoService.findByInfPolitical(infPolitical);
+        try {
+            List<Information> information2 = infoService.findByInfPolitical(infPolitical);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (infPoliticalList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search1");
+            return new ModelAndView("common/error4", map);
+        }
+        map.put("infPoliticalList", infPoliticalList);
+        return new ModelAndView("info/result6", map);
+    }
+
+    @GetMapping("/result7")
+    public ModelAndView result7(@RequestParam("infMarital") Integer infMarital,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Information> infMaritalList = infoService.findByInfMarital(infMarital);
+        try {
+            List<Information> information3 = infoService.findByInfMarital(infMarital);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/info/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (infMaritalList.size()==0){
+            map.put("url", contextPath + "/personnel/info/search1");
+            return new ModelAndView("common/error5", map);
+        }
+        map.put("infMaritalList", infMaritalList);
+        return new ModelAndView("info/result7", map);
     }
 }

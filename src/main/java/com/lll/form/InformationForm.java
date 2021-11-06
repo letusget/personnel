@@ -42,11 +42,12 @@ public class InformationForm {
     /**
      * 入职时间
      */
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    //TODO
+   /* @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @CreationTimestamp  //这样入职时间就不会为空了
     private Date infEntry;
-
+*/
     /**
      * 籍贯
      */

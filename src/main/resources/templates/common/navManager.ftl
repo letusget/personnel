@@ -10,7 +10,7 @@
         <li class="dropdown-header">员工信息</li>
 
         <li><a href="/personnel/employees/list1">员工</a></li>
-        <#--<li><a href="/personnel/employees/index1">新增</a></li>-->
+        <li><a href="/personnel/employees/index1">新增</a></li>
         <li><a href="/personnel/employees/search1">查询</a></li>
         </li>
 
@@ -25,7 +25,7 @@
 
                 <li class="dropdown-header">业绩评价</li>
                 <li><a href="/personnel/evaluation/list1">详情一览</a></li>
-                <li><a href="/personnel/evaluation/index1">新增</a></li>
+                <#--<li><a href="/personnel/evaluation/index1">新增</a></li>-->
 
             </ul>
         </li>

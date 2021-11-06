@@ -21,7 +21,8 @@ public enum ResultEnum
     EMPLOYEE_EVALUATION_SUCCESS(116, "员工评价操作成功"),
     EMPLOYEE_DEPARTMENTS_SUCCESS(117,"员工部门操作成功"),
     EVALUATION_NOT_EXIT(118,"员工评价信息不存在"),
-    USER_SUCCESS(119,"用户创建成功");
+    USER_SUCCESS(119,"用户创建成功"),
+    DEPARTMENTS_NOT_EXIST(120,"该部门不存在");
 
     /**
      * 错误代码

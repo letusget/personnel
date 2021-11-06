@@ -52,5 +52,19 @@ public interface EmployeesService
      */
     EmployeesDTO findByEmpName(String empName);
 
+    /**
+     * 根据部门名称
+     *
+     * @return
+     */
+    List<Employees> findByDepName(String depName);
+
+    /**
+     * 根据员工性别
+     *
+     * @return
+     */
+    List<Employees> findByEmpSex(Integer empSex);
+
 
 }

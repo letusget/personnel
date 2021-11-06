@@ -346,24 +346,37 @@ public class EmployeesController {
         return new ModelAndView("common/success", map);
     }
 
-    @GetMapping("/search")
-    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName, Map<String, Object> map) {
-        if (empName != null) {
+    @GetMapping(value = "/search")
+    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName,
+                               @RequestParam(value = "depName", required = false) String depName,
+                               @RequestParam(value = "empSex", required = false) Integer empSex,
+                               Map<String, Object> map) {
+
+        if (empName != null && depName != null && empSex != null) {
 
         }
+        List<Departments> departmentsList = departmentsService.findAll();
+        map.put("departmentsList", departmentsList);
         return new ModelAndView("employees/search", map);
     }
+
     @GetMapping("/search1")
-    public ModelAndView search1(@RequestParam(value = "empName", required = false) String empName, Map<String, Object> map) {
-        if (empName != null) {
+    public ModelAndView search1(@RequestParam(value = "empName", required = false) String empName,
+                                @RequestParam(value = "depName", required = false) String depName,
+                                @RequestParam(value = "empSex", required = false) Integer empSex,
+                                Map<String, Object> map) {
+        if (empName != null && depName != null && empSex != null) {
 
         }
+        List<Departments> departmentsList = departmentsService.findAll();
+        map.put("departmentsList", departmentsList);
         return new ModelAndView("employees/search1", map);
     }
 
 
     @GetMapping("/result")
-    public ModelAndView result(@RequestParam("empName") String empName, Map<String, Object> map, HttpServletRequest request) {
+    public ModelAndView result(@RequestParam("empName") String empName,
+                               Map<String, Object> map, HttpServletRequest request) {
         String contextPath = "";
         EmployeesDTO employeesDTO = new EmployeesDTO();
         try {
@@ -376,9 +389,60 @@ public class EmployeesController {
             // return new ModelAndView("common/no_order_detail_error", map);
             return new ModelAndView("common/error", map);
         }
+
         map.put("employees", employeesDTO);
         return new ModelAndView("employees/result", map);
     }
+
+    @GetMapping("/result2")
+    public ModelAndView result2(@RequestParam("depName") String depName,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Employees> employeesList = employeesService.findByDepName(depName);
+        try {
+            List<Employees> employees1 = employeesService.findByDepName(depName);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/employees/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (employeesList.size()==0){
+            map.put("url", contextPath + "/personnel/employees/search");
+            return new ModelAndView("common/error1", map);
+        }
+        map.put("employeesList", employeesList);
+        return new ModelAndView("employees/result2", map);
+    }
+
+    @GetMapping("/result3")
+    public ModelAndView result3(@RequestParam("empSex") Integer empSex,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Employees> employeesSexList = employeesService.findByEmpSex(empSex);
+        try {
+            List<Employees> employees2 = employeesService.findByEmpSex(empSex);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/employees/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (employeesSexList.size()==0){
+            map.put("url", contextPath + "/personnel/employees/search");
+            return new ModelAndView("common/error2", map);
+        }
+        map.put("employeesSexList", employeesSexList);
+        return new ModelAndView("employees/result3", map);
+    }
+
+
     @GetMapping("/result1")
     public ModelAndView result1(@RequestParam("empName") String empName, Map<String, Object> map, HttpServletRequest request) {
         String contextPath = "";
@@ -395,5 +459,53 @@ public class EmployeesController {
         }
         map.put("employees", employeesDTO);
         return new ModelAndView("employees/result1", map);
+    }
+
+    @GetMapping("/result4")
+    public ModelAndView result4(@RequestParam("depName") String depName,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Employees> employeesList = employeesService.findByDepName(depName);
+        try {
+            List<Employees> employees1 = employeesService.findByDepName(depName);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/employees/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (employeesList.size()==0){
+            map.put("url", contextPath + "/personnel/employees/search1");
+            return new ModelAndView("common/error1", map);
+        }
+        map.put("employeesList", employeesList);
+        return new ModelAndView("employees/result4", map);
+    }
+
+    @GetMapping("/result5")
+    public ModelAndView result5(@RequestParam("empSex") Integer empSex,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Employees> employeesSexList = employeesService.findByEmpSex(empSex);
+        try {
+            List<Employees> employees2 = employeesService.findByEmpSex(empSex);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/employees/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesSexList.size());
+        if (employeesSexList.size()==0){
+            map.put("url", contextPath + "/personnel/employees/search");
+            return new ModelAndView("common/error2", map);
+        }
+        map.put("employeesSexList", employeesSexList);
+        return new ModelAndView("employees/result5", map);
     }
 }

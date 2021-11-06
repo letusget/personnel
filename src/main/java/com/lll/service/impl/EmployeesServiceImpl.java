@@ -10,6 +10,7 @@ import com.lll.DTO.EmployeesDTO;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
 import com.lll.service.EmployeesService;
+import com.lll.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +73,7 @@ public class EmployeesServiceImpl implements EmployeesService
     public Employees save(Employees employees)
     {
         //获取 EmpId
-        String Id=employees.getEmpId();
+        //String Id=employees.getEmpId();
         //新建工资和评价信息
        /* Salaries salaries=new Salaries();
         EvaluationDTO evaluation=new EvaluationDTO();
@@ -102,6 +103,46 @@ public class EmployeesServiceImpl implements EmployeesService
         evaluationDAO.save(evaluation);*/
         //新增员工 工资信息
 
+
+        /*String Id=employees.getEmpId();
+        String Name=employees.getEmpName();
+
+        System.out.println(Id);
+        System.out.println(Name);
+
+        //TODO
+        *//**
+         新增背景信息
+         *//*
+        Information information=new Information();
+        information.setInfId(KeyUtil.genUniqueKey());
+        information.setEmpId(Id);
+        information.setEmpName(Name);
+        information.setInfEducation("本科");
+        information.setInfPolitical(new Integer(0));
+        information.setInfPlace("江苏南京");
+        information.setInfMarital(new Integer(0));
+        information.setInfRemarks("无");
+
+        *//**
+         * 新增评价信息
+         *//*
+        Evaluation evaluation=new Evaluation();
+        evaluation.setEvaId(KeyUtil.genUniqueKey());
+        evaluation.setEmpId(Id);
+        evaluation.setEmpName(Name);
+        evaluation.setEvaAbsence(new Integer(0));
+        evaluation.setEvaAttendance(new Integer(22));
+        evaluation.setEvaLate(new Integer(0));
+        evaluation.setEvaVacate(new Integer(0));
+        evaluation.setEvaOvertime(new Integer(0));
+        evaluation.setEvaLevel("B");
+        evaluation.setEvaRemarks("暂无");
+
+        //保存信息
+        informationDAO.save(information);
+        evaluationDAO.save(evaluation);
+*/
 
         return employeesDAO.save(employees);
     }
@@ -183,6 +224,36 @@ public class EmployeesServiceImpl implements EmployeesService
         EmployeesDTO  employeesDTO = new EmployeesDTO();
         BeanUtils.copyProperties(employees, employeesDTO);
         return employeesDTO;
+    }
+
+    @Override
+    public List<Employees> findByDepName(String depName)
+    {
+        // 根据部门名称查询 员工信息
+        List<Employees> employeesList= employeesDAO.findByDepName(depName);
+        if (employeesList == null)
+        {
+            throw new PersonnelException(ResultEnum.DEPARTMENTS_NOT_EXIST);
+        }
+
+        EmployeesDTO  employeesDTO = new EmployeesDTO();
+        BeanUtils.copyProperties(employeesList, employeesDTO);
+        return employeesList;
+    }
+
+    @Override
+    public List<Employees> findByEmpSex(Integer empSex)
+    {
+        // 根据性别查询 员工信息
+        List<Employees> employeesSexList= employeesDAO.findByEmpSex(empSex);
+        if (employeesSexList == null)
+        {
+            throw new PersonnelException(ResultEnum.DEPARTMENTS_NOT_EXIST);
+        }
+
+        EmployeesDTO  employeesDTO = new EmployeesDTO();
+        BeanUtils.copyProperties(employeesSexList, employeesDTO);
+        return employeesSexList;
     }
 
 

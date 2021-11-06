@@ -22,31 +22,27 @@
                         <thead>
                         <th>员工编号</th>
                         <th>员工姓名</th>
-                        <th>基本金额</th>
-                        <th>奖金金额</th>
-                        <th>奖金描述</th>
-                        <th>扣除金额</th>
-                        <th>扣除描述</th>
-                        <th>保险福利</th>
-                        <th>最终金额</th>
+                        <th>学历</th>
+                        <th>政治面貌</th>
+                        <th>入职时间</th>
+                        <th>籍贯</th>
+                        <th>婚姻状况</th>
                         <th>备注</th>
                         <th colspan="2">操作</th>
                         </thead>
 
                         <tbody>
                         <tr>
-                            <td>${information.empId}</td>
-                            <td>${information.empName}</td>
-                            <td>${information.salBase}</td>
-                            <td>${information.salBonus}</td>
-                            <td>${information.salBonusDescribes}</td>
-                            <td>${information.salFine}</td>
-                            <td>${information.salFineDescribes}</td>
-                            <td>${information.salBenefits}</td>
-                            <td>${information.salFinal}</td>
-                            <td>${information.salRemarks}</td>
-                            <td><a href="/personnel/information/index?empId=${information.empId}">修改</a></td>
-                            <td><a href="/personnel/information/delete?empId=${information.empId}">删除</a></td>
+                            <td>${info.infId}</td>
+                            <td>${info.empName}</td>
+                            <td>${info.infEducation}</td>
+                            <td>${info.getInfPoliticalEnum().message}</td>
+                            <td>${info.infEntry}</td>
+                            <td>${info.infPlace}</td>
+                            <td>${info.getInfMaritalEnum().message}</td>
+                            <td>${info.infRemarks}</td>
+                            <td><a href="/personnel/info/index?infId=${info.infId}">修改</a></td>
+                            <td><a href="/personnel/info/delete?infId=${info.infId}">删除</a></td>
                         </tr>
                         </tbody>
 

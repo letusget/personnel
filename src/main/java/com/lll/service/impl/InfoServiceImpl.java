@@ -13,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * 背景信息表 Service层实现类
@@ -101,5 +102,49 @@ public class InfoServiceImpl implements InfoService
         InformationDTO informationDTO = new InformationDTO();
         BeanUtils.copyProperties(information, informationDTO);
         return informationDTO;
+    }
+    @Override
+    public  List<Information> findByInfEducation(String infEducation)
+    {
+        // 根据学历查询 员工信息
+        List<Information> informationList= informationDAO.findByInfEducation(infEducation);
+        if (informationList == null)
+        {
+            throw new PersonnelException(ResultEnum.DEPARTMENTS_NOT_EXIST);
+        }
+
+        InformationDTO informationDTO = new InformationDTO();
+        BeanUtils.copyProperties(informationList, informationDTO);
+        return informationList;
+    }
+
+    @Override
+    public  List<Information> findByInfPolitical(Integer infPolitical)
+    {
+        // 根据政治面貌查询 员工信息
+        List<Information> infPoliticalList= informationDAO.findByInfPolitical(infPolitical);
+        if (infPoliticalList == null)
+        {
+            throw new PersonnelException(ResultEnum.DEPARTMENTS_NOT_EXIST);
+        }
+
+        InformationDTO informationDTO = new InformationDTO();
+        BeanUtils.copyProperties(infPoliticalList, informationDTO);
+        return infPoliticalList;
+    }
+
+    @Override
+    public  List<Information> findByInfMarital(Integer infMarital)
+    {
+        // 根据婚姻状况查询 员工信息
+        List<Information> infMaritalList= informationDAO.findByInfMarital(infMarital);
+        if (infMaritalList == null)
+        {
+            throw new PersonnelException(ResultEnum.DEPARTMENTS_NOT_EXIST);
+        }
+
+        InformationDTO informationDTO = new InformationDTO();
+        BeanUtils.copyProperties(infMaritalList, informationDTO);
+        return infMaritalList;
     }
 }

@@ -30,44 +30,6 @@ public class UsersServiceImpl implements UsersService
 
     @Override
     public Users save(Users users) {
-        String Id=users.getUserId();
-        String Name=users.getUserName();
-
-        System.out.println(Id);
-        System.out.println(Name);
-
-        //TODO
-        /**
-        新增背景信息
-         */
-        Information information=new Information();
-        information.setInfId(KeyUtil.genUniqueKey());
-        information.setEmpId(Id);
-        information.setEmpName(Name);
-        information.setInfEducation("本科");
-        information.setInfPolitical(new Integer(0));
-        information.setInfPlace("江苏南京");
-        information.setInfMarital(new Integer(0));
-        information.setInfRemarks("无");
-
-        /**
-         * 新增评价信息
-         */
-        Evaluation evaluation=new Evaluation();
-        evaluation.setEvaId(KeyUtil.genUniqueKey());
-        evaluation.setEmpId(Id);
-        evaluation.setEmpName(Name);
-        evaluation.setEvaAbsence(new Integer(0));
-        evaluation.setEvaAttendance(new Integer(22));
-        evaluation.setEvaLate(new Integer(0));
-        evaluation.setEvaVacate(new Integer(0));
-        evaluation.setEvaOvertime(new Integer(0));
-        evaluation.setEvaLevel("B");
-        evaluation.setEvaRemarks("暂无");
-
-        //保存信息
-        informationDAO.save(information);
-        evaluationDAO.save(evaluation);
 
 
         return usersDAO.save(users);
