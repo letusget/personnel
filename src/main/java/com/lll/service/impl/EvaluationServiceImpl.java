@@ -27,8 +27,25 @@ public class EvaluationServiceImpl implements EvaluationService
 
     /**  根据ID查询 */
     @Override
-    public Evaluation findById(String evaId) {
+    public Evaluation findByEmpId(String evaId) {
         return evaluationDAO.findById(evaId).orElse(null);
+    }
+
+    /**
+     * 根据员工id 查询评价信息
+     */
+    @Override
+    public EvaluationDTO queryByEmpId(String empId)
+    {
+        Evaluation evaluation=evaluationDAO.queryByEmpId(empId);
+        if (evaluation==null)
+        {
+            throw new PersonnelException(ResultEnum.EVALUATION_NOT_EXIT);
+        }
+        EvaluationDTO evaluationDTO=new EvaluationDTO();
+        BeanUtils.copyProperties(evaluation,evaluationDTO);
+        return evaluationDTO;
+
     }
 
     /**

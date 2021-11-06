@@ -105,7 +105,7 @@ public class EvaluationController
     {
         if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findById(evaId);
+            Evaluation evaluation = evaluationService.findByEmpId(evaId);
             map.put("evaluation", evaluation);
         }
         return new ModelAndView("evaluation/index", map);
@@ -115,7 +115,7 @@ public class EvaluationController
     {
         if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findById(evaId);
+            Evaluation evaluation = evaluationService.findByEmpId(evaId);
             map.put("evaluation", evaluation);
         }
         return new ModelAndView("evaluation/index1", map);
@@ -140,7 +140,7 @@ public class EvaluationController
         {
             if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findById(form.getEvaId());
+                evaluation = evaluationService.findByEmpId(form.getEvaId());
             } else
             {
                 form.setEvaId(KeyUtil.genUniqueKey());
@@ -175,7 +175,7 @@ public class EvaluationController
         {
             if (StringUtils.hasText(form.getEvaId()))
             {
-                evaluation = evaluationService.findById(form.getEvaId());
+                evaluation = evaluationService.findByEmpId(form.getEvaId());
             } else
             {
                 form.setEvaId(KeyUtil.genUniqueKey());

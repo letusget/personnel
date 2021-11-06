@@ -44,7 +44,7 @@
             alert("姓名不能为空");
         }
 
-        var patt=/^[\u4E00-\u9FA5]{2,10}(·[\u4E00-\u9FA5]{2,10}){0,2}$/;
+        var patt=/^[\u4E00-\u9FA5A-Za-z\s]+(·[\u4E00-\u9FA5A-Za-z]+)*$/;
         if (!patt.test(empNameText))
         {
             alert(empNameText+" -> 此姓名输入不合规范，请输入真实姓名！");

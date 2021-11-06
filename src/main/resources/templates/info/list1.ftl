@@ -42,7 +42,7 @@
                                 <td>${info.getInfMaritalEnum().message}</td>
                                 <td>${info.infRemarks}</td>
                                 <td><a href="/personnel/info/index1?infId=${info.infId}">修改</a></td>
-                                <td><a href="/personnel/info/delete1?infId=${info.infId}">删除</a></td>
+                                <#--<td><a href="/personnel/info/delete1?infId=${info.infId}">删除</a></td>-->
                             </tr>
                         </#list>
                         </tbody>

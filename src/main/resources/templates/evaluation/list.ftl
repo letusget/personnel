@@ -19,7 +19,9 @@
                 <div class="col-md-12 column">
                     <table class="table table-bordered table-condensed">
                         <thead>
-                        <th>员工ID</th>
+                        <#--<th>员工ID</th>-->
+                        <th>序号</th>
+                        <th>员工姓名</th>
                         <th>员工出勤</th>
                         <th>员工迟到</th>
                         <th>员工评级</th>
@@ -33,7 +35,9 @@
                         <#if evaluationPageList.content??>
                             <#list evaluationPageList.content as evaluation>
                                 <tr>
-                                    <td>${evaluation.empId}</td>
+                                    <#--<td>${evaluation.empId}</td>-->
+                                    <td>${evaluation_index+1}</td>
+                                    <td>${evaluation.empName}</td>
                                     <td>${evaluation.evaAttendance}</td>
                                     <td>${evaluation.evaLate}</td>
                                     <td>${evaluation.evaLevel}</td>

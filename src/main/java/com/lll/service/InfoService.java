@@ -42,6 +42,9 @@ public interface InfoService {
     // 根据员工姓名查找员工工资信息
     InformationDTO findByEmpName(String empName);
 
+    // 根据员工id 查询员工背景信息
+    InformationDTO findByEmpId(String empId);
+
     //根据学历 查询相关员工
     List<Information> findByInfEducation(String infEducation);
 

@@ -12,6 +12,9 @@ public interface InformationDAO extends JpaRepository<Information,String>
     // 根据员工姓名 查找背景信息
     Information findByEmpName(String empName);
 
+    // 根据员工id 查询员工背景信息
+    Information findByEmpId(String empId);
+
     /**
      * 根据学历 查询相关员工
      * @param infEducation

@@ -10,7 +10,12 @@ import java.util.List;
 public interface EvaluationService
 {
     /**  根据ID查询 */
-    Evaluation findById(String evaId);
+    Evaluation findByEmpId(String evaId);
+
+    /**
+     * 根据员工id，查询评价信息
+     */
+    EvaluationDTO queryByEmpId(String empId);
 
     /**
      * 根据姓名查询员工信息

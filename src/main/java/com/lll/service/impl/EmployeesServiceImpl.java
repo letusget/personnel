@@ -104,16 +104,17 @@ public class EmployeesServiceImpl implements EmployeesService
         //新增员工 工资信息
 
 
-        /*String Id=employees.getEmpId();
+        String Id=employees.getEmpId();
         String Name=employees.getEmpName();
 
         System.out.println(Id);
         System.out.println(Name);
 
-        //TODO
-        *//**
+
+        /**
          新增背景信息
-         *//*
+         */
+
         Information information=new Information();
         information.setInfId(KeyUtil.genUniqueKey());
         information.setEmpId(Id);
@@ -124,9 +125,11 @@ public class EmployeesServiceImpl implements EmployeesService
         information.setInfMarital(new Integer(0));
         information.setInfRemarks("无");
 
-        *//**
+
+        /**
          * 新增评价信息
-         *//*
+         */
+
         Evaluation evaluation=new Evaluation();
         evaluation.setEvaId(KeyUtil.genUniqueKey());
         evaluation.setEmpId(Id);
@@ -142,7 +145,7 @@ public class EmployeesServiceImpl implements EmployeesService
         //保存信息
         informationDAO.save(information);
         evaluationDAO.save(evaluation);
-*/
+
 
         return employeesDAO.save(employees);
     }
@@ -180,10 +183,10 @@ public class EmployeesServiceImpl implements EmployeesService
         Employees employee=employeesDAO.findById(empId).orElse(null);
 
         // 根据员工ID 查询背景信息
-        Information information = informationDAO.findById(empId).orElse(null);
+        Information information = informationDAO.findByEmpId(empId);
 
         // 根据员工ID 查询评价信息
-        Evaluation evaluation = evaluationDAO.findById(empId).orElse(null);
+        Evaluation evaluation=evaluationDAO.queryByEmpId(empId);
 
         //如果员工不存在，就抛出异常：员工不存在
         if (employee == null)

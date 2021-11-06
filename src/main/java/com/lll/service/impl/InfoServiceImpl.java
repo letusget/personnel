@@ -41,6 +41,25 @@ public class InfoServiceImpl implements InfoService
     }
 
     /**
+     * 根据员工id 查询员工背景信息
+     * @param empId
+     * @return
+     */
+    @Override
+    public InformationDTO findByEmpId(String empId)
+    {
+        Information information = informationDAO.findByEmpName(empId);
+        if (information == null)
+        {
+            throw new PersonnelException(ResultEnum.EMPLOYEE_INFORMATION_NOT_EXIST);
+        }
+
+        InformationDTO informationDTO = new InformationDTO();
+        BeanUtils.copyProperties(information, informationDTO);
+        return informationDTO;
+    }
+
+    /**
      * 分页查询所有员工工资信息
      * @param pageable
      * @return
