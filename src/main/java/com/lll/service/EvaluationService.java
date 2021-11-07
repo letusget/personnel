@@ -46,4 +46,7 @@ public interface EvaluationService
 
     /**  删除  */
     void delete(String evaId);
+
+    /**  根据评级查询员工信息  */
+    List<Evaluation> findByEvaLevel(String evaLevel);
 }

@@ -193,7 +193,7 @@ public class EmployeesController {
                 employees = employeesService.findByEmpId(form.getEmpId());
                 //将form 中的对象 copy 给employees
                 BeanUtils.copyProperties(form, employees);
-                employeesService.update(employees);
+                employeesService.save(employees);
             }
             else
             {
@@ -232,7 +232,7 @@ public class EmployeesController {
                 employees = employeesService.findByEmpId(form.getEmpId());
                 //将form 中的对象 copy 给employees
                 BeanUtils.copyProperties(form, employees);
-                employeesService.update(employees);
+                employeesService.save(employees);
             } else
             {
                 form.setEmpId(KeyUtil.genUniqueKey());

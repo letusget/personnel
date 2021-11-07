@@ -135,8 +135,23 @@ public class EvaluationServiceImpl implements EvaluationService
         {
             evaluationDAO.delete(evaluation);
         }
-
-
     }
+
+
+    @Override
+    public List<Evaluation> findByEvaLevel(String evaLevel)
+    {
+        // 根据评级查询 员工信息
+        List<Evaluation> evaluationList= evaluationDAO.findByEvaLevel(evaLevel);
+        if (evaluationList == null)
+        {
+            throw new PersonnelException(ResultEnum.EMPLOYEE_NOT_EXIST);
+        }
+
+        EvaluationDTO  evaluationDTO = new EvaluationDTO();
+        BeanUtils.copyProperties(evaluationList, evaluationDTO);
+        return evaluationList;
+    }
+
 }
 

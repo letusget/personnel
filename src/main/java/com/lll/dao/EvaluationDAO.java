@@ -24,4 +24,11 @@ public interface EvaluationDAO extends JpaRepository<Evaluation, String>
      * 根据姓名查询
      */
     Evaluation findByEmpName(String empName);
+
+    /**
+     * 根据业绩评级 查询相关员工
+     * @param evaLevel
+     * @return
+     */
+    List<Evaluation> findByEvaLevel(String evaLevel);
 }

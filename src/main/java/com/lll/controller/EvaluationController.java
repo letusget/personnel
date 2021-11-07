@@ -1,11 +1,16 @@
 package com.lll.controller;
 
+import com.lll.DTO.EmployeesDTO;
+import com.lll.DTO.EvaluationDTO;
+import com.lll.entity.Departments;
+import com.lll.entity.Employees;
 import com.lll.entity.Evaluation;
 import com.lll.enums.ResultEnum;
 import com.lll.exception.PersonnelException;
 import com.lll.form.EvaluationForm;
 import com.lll.service.EvaluationService;
 import com.lll.utils.KeyUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,10 +27,12 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
 
 @Controller
 @RequestMapping("/evaluation")
+@Slf4j
 public class EvaluationController
 {
     @Autowired
@@ -56,8 +63,8 @@ public class EvaluationController
     }
     @GetMapping("/list1")
     public ModelAndView list1(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                             @RequestParam(value = "size",defaultValue = "10") Integer size,
-                             Map<String,Object> map)
+                              @RequestParam(value = "size",defaultValue = "10") Integer size,
+                              Map<String,Object> map)
     {
         PageRequest pageRequest=PageRequest.of(page-1,size);
 
@@ -76,8 +83,8 @@ public class EvaluationController
     }
     @GetMapping("/list2")
     public ModelAndView list2(@RequestParam(value = "page",defaultValue = "1") Integer page,
-                             @RequestParam(value = "size",defaultValue = "10") Integer size,
-                             Map<String,Object> map)
+                              @RequestParam(value = "size",defaultValue = "10") Integer size,
+                              Map<String,Object> map)
     {
         PageRequest pageRequest=PageRequest.of(page-1,size);
 
@@ -105,16 +112,10 @@ public class EvaluationController
     @GetMapping("/index")
     public ModelAndView index(@RequestParam(value = "evaId", required = false) String evaId, Map<String, Object> map)
     {
-        System.out.println("test");
         if (evaId != null)
         {
-            System.out.println("test1");
             Evaluation evaluation = evaluationService.findById(evaId);
             map.put("evaluation", evaluation);
-
-
-            System.out.println(evaluation.getEvaId());
-            System.out.println(evaluation.getEmpName());
 
             Integer sum=0;
             if (evaluation.getEvaVacate() <= 3){
@@ -138,10 +139,11 @@ public class EvaluationController
 
 
             map.put("evaluation", evaluation);
-
+            //System.out.println(evaluation.getEmpId());
+            //System.out.println(evaluation.getEvaLevel());
 
         }
-        System.out.println("test2");
+        //System.out.println("test2");
         return new ModelAndView("evaluation/index", map);
     }
     @GetMapping("/index1")
@@ -149,18 +151,13 @@ public class EvaluationController
     {
         if (evaId != null)
         {
-            Evaluation evaluation = evaluationService.findByEvaId(evaId);
-            System.out.println(evaluation.getEvaId());
-            System.out.println(evaluation.getEmpId());
-            System.out.println(evaluation.getEmpName());
-            System.out.println(evaluation.getEvaLevel());
-
+            //System.out.println("test1");
+            Evaluation evaluation = evaluationService.findById(evaId);
+            map.put("evaluation", evaluation);
             Integer sum=0;
             if (evaluation.getEvaVacate() <= 3){
                 sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 + evaluation.getEvaOvertime()*1;
-            }
-            else
-            {
+            }else{
                 sum = 90 - evaluation.getEvaAbsence()*20 - evaluation.getEvaLate()*5 - (evaluation.getEvaVacate()-3)*5 + evaluation.getEvaOvertime()*1;
             }
 
@@ -178,6 +175,7 @@ public class EvaluationController
             }
 
             map.put("evaluation", evaluation);
+
         }
         return new ModelAndView("evaluation/index1", map);
     }
@@ -202,11 +200,22 @@ public class EvaluationController
             if (StringUtils.hasText(form.getEvaId()))
             {
                 evaluation = evaluationService.findByEvaId(form.getEvaId());
-            } else
+            }
+            else
             {
                 form.setEvaId(KeyUtil.genUniqueKey());
             }
+
+            //System.out.println(form.getEvaId());
+            //System.out.println(form.getEmpId());
+            //System.out.println(form.getEvaLevel());
+
             BeanUtils.copyProperties(form,evaluation);
+
+            //System.out.println(evaluation.getEvaId());
+            //System.out.println(evaluation.getEmpId());
+            //System.out.println(evaluation.getEvaLevel());
+
             evaluationService.save(evaluation);   // 保存/更新
         } catch (PersonnelException e)
         {
@@ -220,8 +229,8 @@ public class EvaluationController
     }
     @PostMapping("/save1")
     public ModelAndView save1(@Valid EvaluationForm form,
-                             BindingResult bindingResult,
-                             HttpServletRequest request)
+                              BindingResult bindingResult,
+                              HttpServletRequest request)
     {
         HttpSession session = request.getSession();
         if (bindingResult.hasErrors())
@@ -288,4 +297,113 @@ public class EvaluationController
         return new ModelAndView("common/success",map);
     }
 
+    @GetMapping(value = "/search")
+    public ModelAndView search(@RequestParam(value = "empName", required = false) String empName,
+                               @RequestParam(value = "evaLevel", required = false) String evaLevel,
+                               Map<String, Object> map) {
+
+        if (empName != null && evaLevel != null) {
+
+        }
+        return new ModelAndView("evaluation/search", map);
+    }
+
+    @GetMapping(value = "/search1")
+    public ModelAndView search1(@RequestParam(value = "empName", required = false) String empName,
+                                @RequestParam(value = "evaLevel", required = false) String evaLevel,
+                                Map<String, Object> map) {
+
+        if (empName != null && evaLevel != null) {
+
+        }
+        return new ModelAndView("evaluation/search1", map);
+    }
+
+    @GetMapping("/result")
+    public ModelAndView result(@RequestParam("empName") String empName,
+                               Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        EvaluationDTO evaluationDTO = new EvaluationDTO();
+        try {
+            evaluationDTO = evaluationService.findByEmpName(empName);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/evaluation/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("evaluation", evaluationDTO);
+        return new ModelAndView("evaluation/result", map);
+    }
+
+    @GetMapping("/result1")
+    public ModelAndView result1(@RequestParam("empName") String empName,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        EvaluationDTO evaluationDTO = new EvaluationDTO();
+        try {
+            evaluationDTO = evaluationService.findByEmpName(empName);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/evaluation/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+
+        map.put("evaluation", evaluationDTO);
+        return new ModelAndView("evaluation/result1", map);
+    }
+
+    @GetMapping("/result2")
+    public ModelAndView result2(@RequestParam("evaLevel") String evaLevel,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Evaluation> evaluationList = evaluationService.findByEvaLevel(evaLevel);
+        try {
+            List<Evaluation> evaluation1 = evaluationService.findByEvaLevel(evaLevel);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/evaluation/search");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (evaluationList.size()==0){
+            map.put("url", contextPath + "/personnel/evaluation/search");
+            return new ModelAndView("common/error6", map);
+        }
+        map.put("evaluationList", evaluationList);
+        return new ModelAndView("evaluation/result2", map);
+    }
+
+    @GetMapping("/result3")
+    public ModelAndView result3(@RequestParam("evaLevel") String evaLevel,
+                                Map<String, Object> map, HttpServletRequest request) {
+        String contextPath = "";
+        List<Evaluation> evaluationList = evaluationService.findByEvaLevel(evaLevel);
+        try {
+            List<Evaluation> evaluation1 = evaluationService.findByEvaLevel(evaLevel);
+        } catch (Exception e) {
+            log.error("发生异常{}", e);
+            contextPath = request.getContextPath(); // 灵活获取应用名 如/personnel
+            map.put("url", contextPath + "/evaluation/search1");
+            map.put("msg", e.getMessage());
+            // return new ModelAndView("common/no_order_detail_error", map);
+            return new ModelAndView("common/error", map);
+        }
+        //System.out.println(employeesList.size());
+        if (evaluationList.size()==0){
+            map.put("url", contextPath + "/personnel/evaluation/search1");
+            return new ModelAndView("common/error6", map);
+        }
+        map.put("evaluationList", evaluationList);
+        return new ModelAndView("evaluation/result3", map);
+    }
 }

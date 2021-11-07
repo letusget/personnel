@@ -175,7 +175,6 @@ public class InfoController {
             // 将form中的数据传到salaries对象中
             BeanUtils.copyProperties(informationForm, information);
 
-
             // 背景信息入库
             infoService.save(information);
 
