@@ -16,6 +16,9 @@ spring:
     url: jdbc:mysql://localhost:3306/person?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
     username: root
     password: mysql159612
+    #url: jdbc:mysql://47.102.139.38:3306/person?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT
+    #username: root
+    #password: @Mysql159612
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
